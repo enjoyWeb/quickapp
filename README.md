@@ -1,4 +1,4 @@
-# 快应用 浏览器
+# 快应用
 
 ## 1、文件结构
 
@@ -23,7 +23,7 @@
 
 ## 3、说明
 
-本项目为快应用浏览器。
+本项目为快应用。
 
 `home`页面：
 - 首页
@@ -58,8 +58,8 @@ npm server & npm watch
 
 # 或者在终端一 Tab 下运行：
 npm server
+
 # 在终端另一 Tab 下运行：
 npm watch
-
 
 用一台 `Android` 手机，下载安装[「快应用」调试器](https://www.quickapp.cn/docCenter/post/69)，打开后操作`扫码安装`，扫描如上命令生成的二维码，即可看到效果；更多讯息，请参见[快应用环境搭建](https://nice.lovejade.cn/zh/article/develop-quick-app-experience-notes.html#环境搭建)。

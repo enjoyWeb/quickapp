@@ -1,10 +1,10 @@
 {
-  "name": "news",
+  "name": "broswer",
   "version": "1.0.0",
   "subversion": {
-    "toolkit": "0.4.2"
+    "toolkit": "1.0.0"
   },
-  "description": "快应用新闻模板",
+  "description": "快应用模板",
   "scripts": {
     "start": "hap server --watch",
     "server": "hap server",
@@ -35,7 +35,6 @@
     "proseWrap": "never"
   },
   "keywords": [
-    "快应用",
-    "新闻"
+    "快应用"
   ]
 }
