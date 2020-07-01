@@ -72,8 +72,8 @@
     <div style="height: 110px;"></div>
     <div class="foot-wrap">
       <div class="foot-box" for="tabList" onclick="routerPush($idx)">
-        <image src="{{$idx===2?$item.imgActive:$item.imgNormal}}"></image>
-        <text style="color: {{$idx===2?'#e7655f':'#333'}};text-align:center;">{{
+        <image class="foot-box-img" src="{{$idx===tabIndex?$item.imgActive:$item.imgNormal}}"></image>
+        <text style="color: {{$idx===tabIndex?'#e7655f':'#333'}};text-align:center;">{{
           $item.label
         }}</text>
       </div>
@@ -200,6 +200,9 @@
 .foot-box text {
   font-size: 30px;
 }
+.foot-box-img {
+  width: 100px !important;
+}
 </style>
 
 <script>
@@ -235,11 +238,13 @@ export default {
   },
   protected: {
     isLogin: 0,
+    tabIndex: 0,
     userName: '路过的一只'
   },
   onInit() {
     let that = this
     that.tabList = data.tabData
+    that.tabIndex = parseInt(that.tabIndex)
   },
   goLogin: function() {
     router.push({
@@ -247,16 +252,15 @@ export default {
     })
   },
   routerPush: function(index) {
-    if (index != 2) {
-      router.replace({
-        uri: '/home',
-        params: {
-          tabIndex: index,
-          userName: this.userName,
-          isLogin: this.isLogin
-        }
-      })
-    }
+    router.replace({
+      uri: this.tabList[index].url,
+      params: {
+        tabIndex: index,
+        userName: this.userName,
+        isLogin: this.isLogin
+      }
+    })
+    this.tabIndex = index
   }
 }
 </script>

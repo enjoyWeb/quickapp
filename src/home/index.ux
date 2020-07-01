@@ -134,7 +134,7 @@
     </list>
     <div show="{{!searchFocus}}" class="foot-wrap">
       <div class="foot-box" for="tabList" onclick="toggleTab($idx)">
-        <image src="{{$idx===tabIndex?$item.imgActive:$item.imgNormal}}"></image>
+        <image class="foot-box-img" src="{{$idx===tabIndex?$item.imgActive:$item.imgNormal}}"></image>
         <text
           style="color: {{$idx===tabIndex?'#e7655f':'#333'}};text-align:center;"
           >{{ $item.label }}</text
@@ -364,9 +364,14 @@
   justify-content: center;
 }
 
+.foot-box-img {
+  width: 100px !important;
+}
+
 .foot-box text {
   font-size: 30px;
 }
+
 .text-one-line {
   lines: 1;
   text-overflow: ellipsis;
@@ -521,16 +526,13 @@ export default {
   },
   //点击导航栏
   toggleTab: function(index) {
-    if (index === 2) {
-      router.replace({
-        uri: this.tabList[index].url,
-        params: {
-          userName: this.userName,
-          isLogin: this.isLogin
-        }
-      })
-      return
-    }
+    router.replace({
+      uri: this.tabList[index].url,
+      params: {
+        userName: this.userName,
+        isLogin: this.isLogin
+      }
+    })
     this.tabIndex = index
   },
   goDetail: function(news) {
