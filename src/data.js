@@ -10,13 +10,13 @@ export default {
             // label:'视频',
             imgNormal:'/common/images/akm.png',
             imgActive:'/common/images/akn.png',
-            url:'/home'
+            url:'/video'
         },
         {
             // label:'收藏',
             imgNormal:'/common/images/akg.png',
             imgActive:'/common/images/akh.png',
-            url:'/user'
+            url:'/collect'
         },
         {
             // label:'个人',

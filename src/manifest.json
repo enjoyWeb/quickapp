@@ -1,6 +1,6 @@
 {
-  "package": "com.news.demo",
-  "name": "新闻",
+  "package": "com.quickapp.demo",
+  "name": "快应用",
   "versionName": "1.0.0",
   "versionCode": "1",
   "minPlatformVersion": "101",
@@ -34,6 +34,12 @@
         "component": "index"
       },
       "detail": {
+        "component": "index"
+      },
+      "video": {
+        "component": "index"
+      },
+      "collect": {
         "component": "index"
       },
       "user": {
