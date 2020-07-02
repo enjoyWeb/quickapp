@@ -1,3 +1,7 @@
+<import name="my-popup" src="apex-ui/components/popup/index"></import>
+<import name="my-button" src="apex-ui/components/button/index"></import>
+<import name="my-icon" src="apex-ui/components/icon/index"></import>
+
 <template>
   <div class="foot-wrap">
     <div class="foot-box" for="tabList" onclick="toggleTab($idx)">
@@ -7,11 +11,89 @@
         >{{ $item.label }}</text
       >
     </div>
+    <div class="wrap">
+      <my-popup 
+        id="popupBottom" 
+        position="bottom"
+      >
+      <div class="pop-content">
+        <div class="pop-header">
+          <image src="../../common/images/be5.png"></image>
+          <div class="pop-login">
+            <text class="title">点击登录</text>
+            <text class="desc">欢迎使用云浏览器</text>
+          </div>
+          <div class="add-desktop">
+            <text>加入桌面</text>
+          </div>
+        </div>
+        <div class="list-wrap">
+          <div class="list-item">
+            <image src="../../common/images/download.png"></image>
+            <text>下载管理</text>
+          </div>
+          <div class="list-item">
+            <image src="../../common/images/add-collect.png"></image>
+            <text>添加收藏</text>
+          </div>
+          <div class="list-item">
+            <image src="../../common/images/history.png"></image>
+            <text>历史记录</text>
+          </div>
+          <div class="list-item">
+            <image src="../../common/images/share.png"></image>
+            <text>立即分享</text>
+          </div>
+        </div>
+        <div class="list-wrap">
+          <div class="list-item">
+            <image src="../../common/images/clean.png"></image>
+            <text>无痕模式</text>
+          </div>
+          <div class="list-item">
+            <image src="../../common/images/story.png"></image>
+            <text>小说模式</text>
+          </div>
+          <div class="list-item">
+            <image src="../../common/images/complaint.png"></image>
+            <text>投诉反馈</text>
+          </div>
+          <div class="list-item">
+            <image src="../../common/images/book.png"></image>
+            <text>我的书架</text>
+          </div>
+        </div>
+        <div class="list-wrap">
+          <div class="list-item">
+            <image src="../../common/images/setting.png"></image>
+            <text>设置</text>
+          </div>
+          <div class="list-item" onclick="handleClickClose('popupBottom')">
+            <my-icon type="arrow-down" size="48"></my-icon>
+          </div>
+          <div class="list-item">
+            <image src="../../common/images/refresh.png"></image>
+            <text>刷新</text>
+          </div>
+        </div>
+      </div>
+      </my-popup>
+    </div>
   </div>
 </template>
 
 <style lang="less">
   @import './index.less';
+  .wrap {
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    z-index: 100;
+    .icon-close {
+      padding-top: 31px;
+      padding-right: 30px;
+    }
+  }
 </style>
 
 <script>
@@ -33,6 +115,10 @@ export default {
   //点击导航栏
   toggleTab: function(index) {
     if (index !== this.tabIndex) {
+      if (index === 3) {
+        this.$child('popupBottom').show()
+        return
+      }
       this.tabIndex = index
       router.replace({
         uri: this.tabList[index].url,
@@ -42,6 +128,9 @@ export default {
         }
       })
     }
+  },
+  handleClickClose(popup){
+    this.$child(popup).hide()
   }
 }
 </script>

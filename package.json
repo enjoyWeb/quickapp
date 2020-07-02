@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@types/quickapp": "git+https://github.com/vivoquickapp/quickapp-types.git",
-    "apex-ui": "latest",
+    "apex-ui": "^1.7.1",
     "babel-eslint": "^10.0.2",
     "eslint": "^5.16.0",
     "eslint-plugin-hybrid": "0.0.5",

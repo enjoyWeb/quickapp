@@ -1,0 +1,47 @@
+<template>
+  <div class="foot-wrap">
+    <div class="foot-box" for="tabList" onclick="toggleTab($idx)">
+      <image class="foot-box-img" src="{{$idx===tabIndex?$item.imgActive:$item.imgNormal}}"></image>
+      <text
+        style="color: {{$idx===tabIndex?'#e7655f':'#333'}};text-align:center;"
+        >{{ $item.label }}</text
+      >
+    </div>
+  </div>
+</template>
+
+<style lang="less">
+  @import './index.less';
+</style>
+
+<script>
+import router from '@system.router'
+import data from '../../data.js'
+export default {
+  data: {
+    tabList: [],
+    tabIndex: 0,
+    isLogin: 0,
+    userName: '路过的一只'
+  },
+  onInit() {
+    let that = this
+    that.tabList = data.tabData
+    const { path = '/home' } = router.getState()
+    that.tabIndex = that.tabList.findIndex(item => item.url === path)
+  },
+  //点击导航栏
+  toggleTab: function(index) {
+    if (index !== this.tabIndex) {
+      this.tabIndex = index
+      router.replace({
+        uri: this.tabList[index].url,
+        params: {
+          userName: this.userName,
+          isLogin: this.isLogin
+        }
+      })
+    }
+  }
+}
+</script>
