@@ -27,13 +27,11 @@ export default {
   onInit() {
     let that = this
     that.tabList = data.tabData
-    that.tabIndex = parseInt(that.tabIndex)
+    const { path = '/home' } = router.getState()
+    that.tabIndex = that.tabList.findIndex(item => item.url === path)
   },
   //点击导航栏
   toggleTab: function(index) {
-    debugger
-    console.log('index->', index)
-    console.log('url->', this.tabList[index].url)
     if (index !== this.tabIndex) {
       this.tabIndex = index
       router.replace({

@@ -1,0 +1,42 @@
+<template>
+  <div class="search-wrap">
+    <div class="search-box">
+      <input
+        placeholder="请输入搜索内容"
+        value="{{searchValue}}"
+        onclick="setValue"
+      />
+    </div>
+    <image
+      src="./img/sqan.png"
+      class="search-text"
+      onclick="doSearch"
+      show="{{searchFocus}}"
+    ></image>
+  </div>
+</template>
+
+<style lang="less">
+  @import './index.less';
+</style>
+
+<script>
+import router from '@system.router'
+export default {
+  data: {
+    searchValue: ''
+  },
+  onInit() {
+  },
+  setValue() {
+    router.replace({
+      uri: '/search'
+    })
+  },
+  doSearch() {
+    router.replace({
+      uri: '/video'
+    })
+  }
+}
+</script>

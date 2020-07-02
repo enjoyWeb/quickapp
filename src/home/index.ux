@@ -1,25 +1,12 @@
 <import name="tabbar" src="../components/tabbar/index.ux"></import>
+<import name="search" src="../components/search/index.ux"></import>
 
 <template>
   <div class="page">
     <image src="./img/jubao.png" class="jubao" style="object-fit: cover"></image>
     <image src="./img/logo.png" class="logo" style="object-fit: cover"></image>
-    <div class="search-wrap">
-      <div class="search-box">
-        <input
-          placeholder="请输入搜索内容"
-          id="search_input"
-          value="{{searchValue}}"
-          onchange="setValue"
-          show="{{searchFocus}}"
-        />
-      </div>
-      <image
-        src="./img/sqan.png"
-        class="search-text"
-        onclick="doSearch"
-        show="{{searchFocus}}"
-      ></image>
+    <div class="search">
+      <search></search>
     </div>
     <div class="iconlist">
       <image src="./img/logo.png" class="item" style="object-fit: cover"></image>

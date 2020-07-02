@@ -47,6 +47,9 @@
       },
       "login": {
         "component": "index"
+      },
+      "search": {
+        "component": "index"
       }
     }
   },
