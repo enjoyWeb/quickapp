@@ -9,10 +9,10 @@
       <search></search>
     </div>
     <div class="iconlist">
-      <image src="./img/logo.png" class="item" style="object-fit: cover"></image>
-      <image src="./img/logo.png" class="item" style="object-fit: cover"></image>
-      <image src="./img/logo.png" class="item" style="object-fit: cover"></image>
-      <image src="./img/logo.png" class="item" style="object-fit: cover"></image>
+      <image src="./img/baidu.png" class="item" style="object-fit: cover"></image>
+      <image src="./img/fei.png" class="item" style="object-fit: cover"></image>
+      <image src="./img/weibo.png" class="item" style="object-fit: cover"></image>
+      <image src="./img/zixun.png" class="item" style="object-fit: cover"></image>
     </div>
     <tabbar></tabbar>
   </div>
