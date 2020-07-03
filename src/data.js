@@ -19,10 +19,36 @@ export default {
             url:'/collect'
         },
         {
-            // label:'个人',
+            // label:'设置',
             imgNormal:'/common/images/more.png',
             imgActive:'/common/images/morea.png',
-            url:'/user'
+            url:'/setting'
+        }
+    ],
+    tabDataFrame: [
+        {
+            // label:'返回',
+            imgNormal:'/common/images/back.png',
+            imgActive:'/common/images/back.png',
+            url:'/back'
+        },
+        {
+            // label:'首页',
+            imgNormal:'/common/images/ake.png',
+            imgActive:'/common/images/akf.png',
+            url:'/home'
+        },
+        {
+            // label:'收藏',
+            imgNormal:'/common/images/akg.png',
+            imgActive:'/common/images/akh.png',
+            url:'/collect'
+        },
+        {
+            // label:'设置',
+            imgNormal:'/common/images/more.png',
+            imgActive:'/common/images/morea.png',
+            url:'/setting'
         }
     ],
     news: [

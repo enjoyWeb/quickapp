@@ -7,7 +7,7 @@
     <div class="foot-box" for="tabList" onclick="toggleTab($idx)">
       <image class="foot-box-img" src="{{$idx===tabIndex?$item.imgActive:$item.imgNormal}}"></image>
       <text
-        style="color: {{$idx===tabIndex?'#e7655f':'#333'}};text-align:center;"
+        style="color:{{$idx===tabIndex?'#e7655f':'#333'}};text-align:center;"
         >{{ $item.label }}</text
       >
     </div>
@@ -89,10 +89,10 @@
     justify-content: center;
     position: fixed;
     z-index: 100;
-    .icon-close {
-      padding-top: 31px;
-      padding-right: 30px;
-    }
+  }
+  .icon-close {
+    padding-top: 31px;
+    padding-right: 30px;
   }
 </style>
 
@@ -100,6 +100,11 @@
 import router from '@system.router'
 import data from '../../data.js'
 export default {
+  props: {
+    type: {
+      default: 'tabData'
+    }
+  },
   data: {
     tabList: [],
     tabIndex: 0,
@@ -108,7 +113,7 @@ export default {
   },
   onInit() {
     let that = this
-    that.tabList = data.tabData
+    that.tabList = data[that.type]
     const { path = '/home' } = router.getState()
     that.tabIndex = that.tabList.findIndex(item => item.url === path)
   },

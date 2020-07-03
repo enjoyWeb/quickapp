@@ -9,10 +9,12 @@
       <search></search>
     </div>
     <div class="iconlist">
-      <image src="./img/baidu.png" class="item" style="object-fit: cover"></image>
-      <image src="./img/fei.png" class="item" style="object-fit: cover"></image>
-      <image src="./img/weibo.png" class="item" style="object-fit: cover"></image>
-      <image src="./img/zixun.png" class="item" style="object-fit: cover"></image>
+      <image src="./img/baidu.png" class="item" style="object-fit: cover" onclick="onDrump('https://m.baidu.com/')"></image>
+      <image src="./img/fei.png" class="item" style="object-fit: cover" onclick="onDrump('https://voice.baidu.com/act/newpneumonia/newpneumonia/?from=osari_aladin_top1')"></image>
+      <image src="./img/weibo.png" class="item" style="object-fit: cover" onclick="onDrump('https://m.weibo.cn')"></image>
+      <a href="/video">
+        <image src="./img/zixun.png" class="item" style="object-fit: cover"></image>
+      </a>
     </div>
     <tabbar></tabbar>
   </div>
@@ -23,6 +25,9 @@
 </style>
 
 <script>
+import router from '@system.router'
+import webview from '@system.webview'
+
 export default {
   private: {
   },
@@ -33,6 +38,14 @@ export default {
   onHide() {
   },
   onShow() {
+  },
+  onDrump(url) {
+    router.replace({
+      uri: '/frame',
+      params: {
+        url: url
+      }
+    })
   }
 }
 </script>

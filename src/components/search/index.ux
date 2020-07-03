@@ -21,6 +21,7 @@
 </style>
 
 <script>
+import barcode from '@system.barcode'
 import router from '@system.router'
 export default {
   data: {
@@ -34,8 +35,13 @@ export default {
     })
   },
   doSearch() {
-    router.replace({
-      uri: '/video'
+    barcode.scan({
+      success: function(data) {
+        console.log(`handling success: ${data.result}`)
+      },
+      fail: function(data, code) {
+        console.log(`handling fail, code = ${code}`)
+      }
     })
   }
 }

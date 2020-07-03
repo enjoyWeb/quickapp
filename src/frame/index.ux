@@ -1,0 +1,36 @@
+<import name="tabbar" src="../components/tabbar/index.ux"></import>
+
+<template>
+  <div class="page">
+    <web
+      class="web-comp"
+      src="{{websrc}}"
+      id="web"
+    ></web>
+    <div class="foot-wrap">
+      <tabbar type="tabDataFrame"></tabbar>
+    </div>
+  </div>
+</template>
+
+<style lang="less">
+  @import './index.less';
+</style>
+
+<script>
+import router from '@system.router'
+
+export default {
+  data: {
+    websrc: 'https://m.baidu.com/'
+  },
+  onInit() {
+    var page = router.getState()
+    console.log(`${page}`)
+  },
+  onHide() {
+  },
+  onShow() {
+  }
+}
+</script>

@@ -17,6 +17,12 @@
     },
     {
       "name": "system.shortcut"
+    },
+    {
+      "name": "system.barcode"
+    },
+    {
+      "name": "system.webview"
     }
   ],
   "permissions": [
@@ -49,6 +55,9 @@
         "component": "index"
       },
       "search": {
+        "component": "index"
+      },
+      "frame": {
         "component": "index"
       }
     }
