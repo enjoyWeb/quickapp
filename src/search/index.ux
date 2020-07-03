@@ -16,7 +16,7 @@
           >{{ currentKeywords }}</text
         >
         <input
-          placeholder="搜你想搜的"
+          placeholder="请输入搜索内容"
           id="search_input"
           value="{{searchValue}}"
           onchange="setValue"
