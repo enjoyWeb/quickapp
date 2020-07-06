@@ -3,6 +3,10 @@
 <import name="my-icon" src="apex-ui/components/icon/index"></import>
 <import name="my-toast" src="apex-ui/components/toast/index"></import>
 <import name="my-dialog" src="apex-ui/components/dialog/index"></import>
+<import name="my-select" src="apex-ui/components/select/index"></import>
+<import name="my-textarea" src="apex-ui/components/textarea/index"></import>
+<import name="my-input" src="apex-ui/components/input/index"></import>
+<import name="dialog-bar" src="../../components/dialog/index.ux"></import>
 
 <template>
   <div class="foot-wrap">
@@ -83,15 +87,26 @@
       </my-popup>
     </div>
     <div class="dialog">
-      <my-dialog
+      <dialog-bar
         visible="{{open}}"
         title="投诉反馈"
-        content="反馈内容"
-        oncancel="close"
-        onaffirm="close"
+        oncancel="clickCancel()"
+        onconfirm="clickConfirm()"
       >
-        <text>content</div>
-      </my-dialog>
+        <div class="wrap-form">
+          <div class="item mar20" onclick="singleSelect">
+            <text>{{result}}</text>
+            <my-icon type="arrow-down" size="40"></my-icon>
+          </div>
+          <div class="mar20 textarea">
+            <my-textarea placeholder="请详细描述您遇到的问题，您的意见及建议" rows="{{3}}"></my-textarea>
+          </div>
+          <div class="mar20 input">
+            <my-input value="{{ phone }}" type="number" placeholder="填写你的联系方式"></my-input>
+          </div>
+        </div>
+      </dialog-bar>
+      <my-select id="select" oncomfirm="singleClose"></my-select>
     </div>
   </div>
 </template>
@@ -129,6 +144,8 @@ export default {
     clean: false,
     story: false,
     open: false,
+    result: '请选择反馈类型',
+    phone: ''
   },
   onInit() {
     let that = this
@@ -268,8 +285,22 @@ export default {
       this.handleClickClose('popupBottom')
     }, 1000)
   },
-  close() {
+  clickCancel() {
+    console.log('取消')
     this.open = false;
+  },
+  clickConfirm() {
+    console.log('确认')
+    this.open = false;
+  },
+  singleSelect() {
+    let opt = ["用户体验投诉", "小说模式反馈", "非自愿打开云浏览器"]
+    this.$child('select').showSelect({
+      options: opt,
+    })
+  },
+  singleClose(evt) {
+    this.result = evt.detail.data || "请选择反馈类型"
   }
 }
 </script>
