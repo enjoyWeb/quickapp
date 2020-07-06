@@ -2,7 +2,6 @@
 <import name="my-button" src="apex-ui/components/button/index"></import>
 <import name="my-icon" src="apex-ui/components/icon/index"></import>
 <import name="my-toast" src="apex-ui/components/toast/index"></import>
-<import name="my-dialog" src="apex-ui/components/dialog/index"></import>
 <import name="my-select" src="apex-ui/components/select/index"></import>
 <import name="my-textarea" src="apex-ui/components/textarea/index"></import>
 <import name="my-input" src="apex-ui/components/input/index"></import>

@@ -14,13 +14,16 @@ import router from '@system.router'
 
 export default {
   props: {
+    url: {
+      default: '/pages/home'
+    },
     title: {
       default: '标题'
     }
   },
   back () {
     router.replace({
-      uri: '/pages/home'
+      uri: this.url
     })
   }
 }

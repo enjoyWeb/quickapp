@@ -2,24 +2,27 @@
 <import name="divHeader" src="../../components/header/index.ux"></import>
 <import name="my-icon" src="apex-ui/components/icon/index"></import>
 <import name="my-switch" src="apex-ui/components/switch/index"></import>
+<import name="my-select" src="apex-ui/components/select/index"></import>
+<import name="dialog-bar" src="../../components/dialog/index.ux"></import>
 
 <template>
   <div class="page">
     <divHeader title="设置"></divHeader>
-    <div class="item-box">
+    <div class="item-box" onclick="singleSelect">
       <text class='title'>搜索引擎</text>
       <div class="desc">
-        <image src="/common/images/baidu.png"></image>
-        <my-icon type="arrow-fwd" size="48"></my-icon>
+        <!-- <image src="/common/images/baidu.png"></image> -->
+        <text>{{search}}</text>
+        <my-icon type="arrow-fwd" size="48">></my-icon>
       </div>
     </div>
-    <div class="item-box">
+    <div class="item-box" onclick="privacy">
       <text class='title'>隐私政策</text>
       <div class="desc">
         <my-icon type="arrow-fwd" size="48"></my-icon>
       </div>
     </div>
-    <div class="item-box">
+    <div class="item-box" onclick="aboutUs">
       <text class='title'>关于我们</text>
       <div class="desc">
         <my-icon type="arrow-fwd" size="48"></my-icon>
@@ -37,14 +40,14 @@
         <my-switch value="true" onchange="toggleRead"></my-switch>
       </div>
     </div>
-    <div class="item-box">
+    <div class="item-box" onclick="contactUs">
       <text class='title'>联系我们</text>
       <div class="desc">
         <my-icon type="arrow-fwd" size="48"></my-icon>
       </div>
     </div>
-    <div class="item-box">
-      <text class='title'>清楚数据</text>
+    <div class="item-box" onclick="singleSelect">
+      <text class='title'>清除数据</text>
       <div class="desc">
         <my-icon type="arrow-fwd" size="48"></my-icon>
       </div>
@@ -52,6 +55,22 @@
     <text class='version'>
       版本号：1.0.0
     </text>
+    <my-select id="select" oncomfirm="singleClose"></my-select>
+    <my-select id="select2" oncomfirm="multiClose"></my-select>
+    <div class="dialog">
+      <dialog-bar
+        visible="{{open}}"
+        title="在线客服"
+        type="confirm"
+        onconfirm="clickConfirm()"
+      >
+        <div class="content">
+          <text>QQ:XXXXXXXXX</text>
+          <text>微信:XXXXXXXXX</text>
+        </div>
+      </dialog-bar>
+      <my-select id="select" oncomfirm="singleClose"></my-select>
+    </div>
   </div>
 </template>
 
@@ -66,7 +85,9 @@ export default {
   private: {
     scrollpage: false,
     contentList: [],
-    download: []
+    download: [],
+    open: false,
+    search: '百度'
   },
   protected: {
   },
@@ -81,6 +102,41 @@ export default {
   },
   toggleRead(e) {
     console.log('toggleRead changed!', e)
+  },
+  contactUs () {
+    this.open = true
+  },
+  clickConfirm() {
+    this.open = false
+  },
+  singleSelect() {
+    let opt = ["360", "百度", "神马", "搜狗"]
+    this.$child('select').showSelect({
+      options: opt,
+    })
+  },
+  singleClose(evt) {
+    this.search = evt.detail.data || "百度"
+  },
+  multiSelect() {
+    let opt = ["地址栏数据记录", "历史记录", "Cookies", "缓存", "表单密码"]
+    this.$child('select2').showSelect({
+      options: opt,
+      type: 'checkBox'
+    })
+  },
+  multiClose(evt) {
+  },
+  privacy() {
+    router.replace({
+      uri: '/pages/privacy'
+    })
+  },
+  aboutUs() {
+    router.replace({
+      uri: '/pages/about'
+    })
+    
   }
 }
 </script>

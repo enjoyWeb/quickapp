@@ -1,0 +1,44 @@
+
+<import name="divHeader" src="../../components/header/index.ux"></import>
+
+<template>
+  <div class="page">
+    <divHeader title="关于我们" url="/pages/setting"></divHeader>
+    <div class="content">
+      <div class="header">
+        <image src="/common/logo.png"></image>
+        <text>预感浏览器</text>
+      </div>
+      <text class="body">
+        1、预感浏览器
+        2、预感浏览器
+        3、预感浏览器
+        4、预感浏览器
+        5、预感浏览器
+        6、预感浏览器
+      </text>
+    </div>
+    <text class='version'>
+      版本号：1.0.0
+    </text>
+  </div>
+</template>
+
+<style lang="less">
+  @import './index.less';
+</style>
+
+<script>
+export default {
+  private: {
+  },
+  protected: {
+  },
+  onInit() {
+  },
+  onHide() {
+  },
+  onShow() {
+  }
+}
+</script>

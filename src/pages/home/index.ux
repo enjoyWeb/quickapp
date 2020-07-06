@@ -1,9 +1,13 @@
 <import name="tabbar" src="../../components/tabbar/index.ux"></import>
 <import name="search" src="../../components/search/index.ux"></import>
+<import name="my-select" src="apex-ui/components/select/index"></import>
+<import name="my-textarea" src="apex-ui/components/textarea/index"></import>
+<import name="my-input" src="apex-ui/components/input/index"></import>
+<import name="dialog-bar" src="../../components/dialog/index.ux"></import>
 
 <template>
   <div class="page">
-    <image src="./img/jubao.png" class="jubao" style="object-fit: cover"></image>
+    <image src="./img/jubao.png" class="jubao" style="object-fit: cover" onclick="toggleJubao"></image>
     <image src="./img/logo.png" class="logo" style="object-fit: cover"></image>
     <div class="search">
       <search></search>
@@ -17,6 +21,28 @@
       </a>
     </div>
     <tabbar></tabbar>
+    <div class="dialog">
+      <dialog-bar
+        visible="{{open}}"
+        title="我要举报"
+        oncancel="clickCancel()"
+        onconfirm="clickConfirm()"
+      >
+        <div class="wrap-form">
+          <div class="item mar20" onclick="singleSelect">
+            <text>{{result}}</text>
+            <my-icon type="arrow-down" size="40"></my-icon>
+          </div>
+          <div class="mar20 textarea">
+            <my-textarea placeholder="请详细描述您遇到的问题，您的意见及建议" rows="{{3}}"></my-textarea>
+          </div>
+          <div class="mar20 input">
+            <my-input value="{{ phone }}" type="number" placeholder="填写你的联系方式"></my-input>
+          </div>
+        </div>
+      </dialog-bar>
+      <my-select id="select" oncomfirm="singleClose"></my-select>
+    </div>
   </div>
 </template>
 
@@ -36,6 +62,9 @@ export default Component({
   private: {
   },
   protected: {
+    open: false,
+    result: '请选择举报类型',
+    phone: ''
   },
   onInit() {
   },
@@ -48,6 +77,24 @@ export default Component({
     router.replace({
       uri: '/pages/frame'
     })
+  },
+  toggleJubao () {
+    this.open = true
+  },
+  clickCancel() {
+    this.open = false
+  },
+  clickConfirm() {
+    this.open = false
+  },
+  singleSelect() {
+    let opt = ["用户体验投诉", "小说模式反馈", "非自愿打开云浏览器"]
+    this.$child('select').showSelect({
+      options: opt,
+    })
+  },
+  singleClose(evt) {
+    this.result = evt.detail.data || "请选择举报类型"
   }
 })
 </script>

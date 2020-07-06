@@ -1,0 +1,44 @@
+
+<import name="divHeader" src="../../components/header/index.ux"></import>
+<import name="my-segmented-control" src="apex-ui/components/segmented-control/index.ux"></import>
+
+<template>
+  <div class="page">
+    <divHeader title="隐私政策" url="/pages/setting"></divHeader>
+    <my-segmented-control theme="positive" current="{{current}}" values="{{ segments }}" onchange="changeTab"></my-segmented-control>
+    <div class="content" show="{{current === 0}}">
+      <text>隐私政策</text>
+    </div>
+    <div class="content" show="{{current === 1}}">
+      <text>用户协议</text>
+    </div>
+  </div>
+</template>
+
+<style lang="less">
+  @import './index.less';
+</style>
+
+<script>
+import router from '@system.router'
+
+export default {
+  private: {
+    current: 0,
+    segments: [
+      '隐私政策', '用户协议'
+    ]
+  },
+  protected: {
+  },
+  onInit() {
+  },
+  onHide() {
+  },
+  onShow() {
+  },
+  changeTab(e) {
+    this.current = e.detail.index
+  }
+}
+</script>

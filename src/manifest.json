@@ -71,6 +71,12 @@
       },
       "pages/setting": {
         "component": "index"
+      },
+      "pages/about": {
+        "component": "index"
+      },
+      "pages/privacy": {
+        "component": "index"
       }
     }
   },
