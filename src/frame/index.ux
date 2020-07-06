@@ -19,18 +19,26 @@
 
 <script>
 import router from '@system.router'
+import { mapGetters, Component } from "quickapp-vuex";
 
-export default {
+export default Component({
   data: {
     websrc: 'https://m.baidu.com/'
   },
+  computed: {
+    ...mapGetters(["url"])
+  },
   onInit() {
-    var page = router.getState()
-    console.log(`${page}`)
+    // var page = router.getState()
+    // console.log(`page index = ${page.index}`)
+    // console.log(`page name = ${page.name}`)
+    // console.log(`page path = ${page.path}`)
   },
   onHide() {
   },
-  onShow() {
+  onShow(){
+    console.log(`url->${this.url}`)
+    this.websrc = this.url
   }
-}
+})
 </script>

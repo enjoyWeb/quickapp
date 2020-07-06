@@ -30,7 +30,7 @@ export default {
             // label:'返回',
             imgNormal:'/common/images/back.png',
             imgActive:'/common/images/back.png',
-            url:'/back'
+            url:'/home'
         },
         {
             // label:'首页',

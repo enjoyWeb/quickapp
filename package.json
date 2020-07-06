@@ -36,5 +36,8 @@
   },
   "keywords": [
     "快应用"
-  ]
+  ],
+  "dependencies": {
+    "quickapp-vuex": "^1.0.5"
+  }
 }

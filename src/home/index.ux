@@ -27,8 +27,12 @@
 <script>
 import router from '@system.router'
 import webview from '@system.webview'
+import { mapMutations, Component } from "quickapp-vuex"
 
-export default {
+export default Component({
+  methods: {
+    ...mapMutations(['setFrameUrl'])
+  },
   private: {
   },
   protected: {
@@ -40,12 +44,10 @@ export default {
   onShow() {
   },
   onDrump(url) {
+    this.setFrameUrl(url)
     router.replace({
-      uri: '/frame',
-      params: {
-        url: url
-      }
+      uri: '/frame'
     })
   }
-}
+})
 </script>
