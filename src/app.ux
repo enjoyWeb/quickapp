@@ -1,12 +1,12 @@
 <script>
-import store from "./store.js";
+import store from "./store/index.js";
 import Vuex from "quickapp-vuex";
 Vuex.install(store);
 
 /**
  * 应用级别的配置，供所有页面公用
  */
-import util from './util'
+import util from './util/util.js'
 
 export default {
   showMenu: util.showMenu,

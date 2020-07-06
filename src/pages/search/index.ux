@@ -99,7 +99,7 @@
 <script>
 import device from '@system.device'
 import router from '@system.router'
-import data from '../data.js'
+import data from '../../data.js'
 export default {
   private: {
     currentKeywords: '',
@@ -164,7 +164,7 @@ export default {
     // that.searchFocus = bool
     // that.$element('search_input').focus({ focus: bool })
     router.replace({
-      uri: '/video'
+      uri: '/pages/video'
     })
   },
   setValue: function(e) {

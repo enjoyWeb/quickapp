@@ -248,7 +248,7 @@ export default {
   },
   goLogin: function() {
     router.push({
-      uri: '/login'
+      uri: '/pages/login'
     })
   },
   routerPush: function(index) {

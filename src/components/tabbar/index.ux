@@ -114,7 +114,7 @@ export default {
   onInit() {
     let that = this
     that.tabList = data[that.type]
-    const { path = '/home' } = router.getState()
+    const { path = '/pages/home' } = router.getState()
     that.tabIndex = that.tabList.findIndex(item => item.url === path)
   },
   //点击导航栏

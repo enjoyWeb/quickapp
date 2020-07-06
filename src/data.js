@@ -4,25 +4,25 @@ export default {
             // label:'首页',
             imgNormal:'/common/images/ake.png',
             imgActive:'/common/images/akf.png',
-            url:'/home'
+            url:'/pages/home'
         },
         {
             // label:'视频',
             imgNormal:'/common/images/akm.png',
             imgActive:'/common/images/akn.png',
-            url:'/video'
+            url:'/pages/video'
         },
         {
             // label:'收藏',
             imgNormal:'/common/images/akg.png',
             imgActive:'/common/images/akh.png',
-            url:'/collect'
+            url:'/pages/collect'
         },
         {
             // label:'设置',
             imgNormal:'/common/images/more.png',
             imgActive:'/common/images/morea.png',
-            url:'/setting'
+            url:'/pages/setting'
         }
     ],
     tabDataFrame: [
@@ -30,25 +30,25 @@ export default {
             // label:'返回',
             imgNormal:'/common/images/back.png',
             imgActive:'/common/images/back.png',
-            url:'/home'
+            url:'/pages/home'
         },
         {
             // label:'首页',
             imgNormal:'/common/images/ake.png',
             imgActive:'/common/images/akf.png',
-            url:'/home'
+            url:'/pages/home'
         },
         {
             // label:'收藏',
             imgNormal:'/common/images/akg.png',
             imgActive:'/common/images/akh.png',
-            url:'/collect'
+            url:'/pages/collect'
         },
         {
             // label:'设置',
             imgNormal:'/common/images/more.png',
             imgActive:'/common/images/morea.png',
-            url:'/setting'
+            url:'/pages/setting'
         }
     ],
     news: [

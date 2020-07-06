@@ -1,4 +1,4 @@
-<import name="tabbar" src="../components/tabbar/index.ux"></import>
+<import name="tabbar" src="../../components/tabbar/index.ux"></import>
 
 <template>
   <div class="page">
@@ -19,7 +19,7 @@
 
 <script>
 import router from '@system.router'
-import { mapGetters, Component } from "quickapp-vuex";
+import { mapGetters, mapMutations, Component } from "quickapp-vuex";
 
 export default Component({
   data: {
@@ -28,6 +28,9 @@ export default Component({
   computed: {
     ...mapGetters(["url"])
   },
+  methods: {
+    ...mapMutations(['setFrameUrl'])
+  },
   onInit() {
     // var page = router.getState()
     // console.log(`page index = ${page.index}`)
@@ -35,9 +38,9 @@ export default Component({
     // console.log(`page path = ${page.path}`)
   },
   onHide() {
+    this.setFrameUrl('')
   },
   onShow(){
-    console.log(`url->${this.url}`)
     this.websrc = this.url
   }
 })

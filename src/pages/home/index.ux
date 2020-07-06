@@ -1,5 +1,5 @@
-<import name="tabbar" src="../components/tabbar/index.ux"></import>
-<import name="search" src="../components/search/index.ux"></import>
+<import name="tabbar" src="../../components/tabbar/index.ux"></import>
+<import name="search" src="../../components/search/index.ux"></import>
 
 <template>
   <div class="page">
@@ -46,7 +46,7 @@ export default Component({
   onDrump(url) {
     this.setFrameUrl(url)
     router.replace({
-      uri: '/frame'
+      uri: '/pages/frame'
     })
   }
 })

@@ -1,5 +1,5 @@
-<import name="tabbar" src="../components/tabbar/index.ux"></import>
-<import name="search" src="../components/search/index.ux"></import>
+<import name="tabbar" src="../../components/tabbar/index.ux"></import>
+<import name="search" src="../../components/search/index.ux"></import>
 
 <template>
   <div class="page">
@@ -60,7 +60,7 @@
 
 <script>
 import router from '@system.router'
-import data from '../data.js'
+import data from '../../data.js'
 export default {
   private: {
     scrollpage: false,
@@ -85,7 +85,7 @@ export default {
     let that = this
     if (news.type === 'img') {
       router.push({
-        uri: '/detail',
+        uri: '/pages/detail',
         params: {
           info: news
         }

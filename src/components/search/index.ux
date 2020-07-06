@@ -31,7 +31,7 @@ export default {
   },
   setValue() {
     router.replace({
-      uri: '/search'
+      uri: '/pages/search'
     })
   },
   doSearch() {

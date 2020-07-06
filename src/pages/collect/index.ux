@@ -1,6 +1,6 @@
 <template>
   <div>
-    <image class="back" src="../common/images/b2h.png" onclick="back"></image>
+    <image class="back" src="/common/images/b2h.png" onclick="back"></image>
 
     <tabs class="tabs" onchange="changeTabactive" index="0">
       <tab-bar class="tab-bar">
@@ -12,13 +12,13 @@
         <div class="item-container">
           <div class="item-content" show="{{activeIndex === 0}}">
             <div class="empty">
-              <image src="../common/images/empty.png"></image>
+              <image src="/common/images/empty.png"></image>
               <text>暂无收藏书架</text>
             </div>
           </div>
           <div class="item-content" show="{{activeIndex === 1}}">
             <div class="empty">
-              <image src="../common/images/empty.png"></image>
+              <image src="/common/images/empty.png"></image>
               <text>暂无收藏网址</text>
             </div>
           </div>
@@ -51,11 +51,11 @@ export default {
     //   router.back()
     // } else {
     //   router.replace({
-    //     uri: '/home'
+    //     uri: '/pages/home'
     //   })
     // }
     router.replace({
-      uri: '/home'
+      uri: '/pages/home'
     })
   }
 }
