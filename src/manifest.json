@@ -23,6 +23,9 @@
     },
     {
       "name": "system.webview"
+    },
+    {
+      "name": "system.storage"
     }
   ],
   "permissions": [
@@ -58,6 +61,15 @@
         "component": "index"
       },
       "pages/frame": {
+        "component": "index"
+      },
+      "pages/download": {
+        "component": "index"
+      },
+      "pages/history": {
+        "component": "index"
+      },
+      "pages/setting": {
         "component": "index"
       }
     }

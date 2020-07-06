@@ -51,6 +51,80 @@ export default {
             url:'/pages/setting'
         }
     ],
+    download: [
+        {
+            img: 'https://p3.pstatp.com/list/pgc-image/15389877969705eb4ead894',
+            name: 'AAAAAAAAAAAAAAA.jpg',
+            size: '111.0MB',
+            time: '2020-07-06'
+        },
+        {
+            img: 'https://p3.pstatp.com/list/pgc-image/15389877969705eb4ead894',
+            name: 'BBBBBBBBBBBBBB.jpg',
+            size: '222.0MB',
+            time: '2020-07-06'
+        },
+        {
+            img: 'https://p3.pstatp.com/list/pgc-image/15389877969705eb4ead894',
+            name: 'CCCCCCCCCCCCC.jpg',
+            size: '333.0MB',
+            time: '2020-07-06'
+        },
+        {
+            img: 'https://p3.pstatp.com/list/pgc-image/15389877969705eb4ead894',
+            name: 'DDDDDDDDDDDDD.jpg',
+            size: '444.0MB',
+            time: '2020-07-06'
+        },
+        {
+            img: 'https://p3.pstatp.com/list/pgc-image/15389877969705eb4ead894',
+            name: 'EEEEEEEEEEEEEE.jpg',
+            size: '555.0MB',
+            time: '2020-07-06'
+        },
+        {
+            img: 'https://p3.pstatp.com/list/pgc-image/15389877969705eb4ead894',
+            name: 'FFFFFFFFFFFFFF.jpg',
+            size: '666.0MB',
+            time: '2020-07-06'
+        },
+        {
+            img: 'https://p3.pstatp.com/list/pgc-image/15389877969705eb4ead894',
+            name: 'AAAAAAAAAAAAAAA.jpg',
+            size: '111.0MB',
+            time: '2020-07-06'
+        },
+        {
+            img: 'https://p3.pstatp.com/list/pgc-image/15389877969705eb4ead894',
+            name: 'BBBBBBBBBBBBBB.jpg',
+            size: '222.0MB',
+            time: '2020-07-06'
+        },
+        {
+            img: 'https://p3.pstatp.com/list/pgc-image/15389877969705eb4ead894',
+            name: 'CCCCCCCCCCCCC.jpg',
+            size: '333.0MB',
+            time: '2020-07-06'
+        },
+        {
+            img: 'https://p3.pstatp.com/list/pgc-image/15389877969705eb4ead894',
+            name: 'DDDDDDDDDDDDD.jpg',
+            size: '444.0MB',
+            time: '2020-07-06'
+        },
+        {
+            img: 'https://p3.pstatp.com/list/pgc-image/15389877969705eb4ead894',
+            name: 'EEEEEEEEEEEEEE.jpg',
+            size: '555.0MB',
+            time: '2020-07-06'
+        },
+        {
+            img: 'https://p3.pstatp.com/list/pgc-image/15389877969705eb4ead894',
+            name: 'FFFFFFFFFFFFFF.jpg',
+            size: '666.0MB',
+            time: '2020-07-06'
+        }
+    ],
     news: [
         {
             img: [],

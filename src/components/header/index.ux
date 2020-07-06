@@ -1,0 +1,27 @@
+<template>
+  <div class="header">
+    <image class="back" src="/common/images/b2h.png" onclick="back"></image>
+    <text class="page-title">{{title}}</text>
+  </div>
+</template>
+
+<style lang="less">
+  @import './index.less';
+</style>
+
+<script>
+import router from '@system.router'
+
+export default {
+  props: {
+    title: {
+      default: '标题'
+    }
+  },
+  back () {
+    router.replace({
+      uri: '/pages/home'
+    })
+  }
+}
+</script>

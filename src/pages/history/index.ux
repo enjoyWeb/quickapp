@@ -1,0 +1,92 @@
+<import name="divHeader" src="../../components/header/index.ux"></import>
+
+<template>
+  <div class="page">
+    <divHeader title="历史记录"></divHeader>
+
+    <text class="empty" show="{{!contentList.length}}">暂无下载数据</text>
+    <!-- 消息列表 -->
+    <list
+      show="{{contentList.length}}"
+      class="content-list"
+      scrollpage="{{scrollpage}}}"
+      onscrollbottom="renderMoreListItem"
+    >
+      <list-item type="news" class="content-list-item">
+        <div
+          class="itemBox"
+          for="news in contentList"
+          onclick="goDetail(news)"
+        >
+          <text class="title">{{ news.title }}</text>
+          <div class="img-box" show="{{news.img.length>0&&news.type==='img'}}">
+            <image
+              for="(imgIndex, img) in news.img"
+              src="{{img}}"
+              class="{{news.img.length===1?'big-img':'three-img'}}"
+              show="{{imgIndex<3}}"
+            ></image>
+          </div>
+          <div class="img-box" show="{{news.img.length>0&&news.type==='video'}}">
+            <video
+              src="{{news.img[0]}}"
+              class="big-img"
+              poster="{{news.img[1]}}"
+            ></video>
+          </div>
+          <div class="content-foot">
+            <text class="tag {{news.tag?'':'no-border'}}">{{ news.tag }}</text>
+            <text>{{ news.author }}</text>
+            <text>{{ news.commentNum }}</text>
+            <text>{{ news.time }}</text>
+          </div>
+        </div>
+      </list-item>
+      <list-item type="loadMore" class="load-more">
+        <progress type="circular"></progress>
+        <text>加载更多</text>
+      </list-item>
+    </list>
+  </div>
+</template>
+
+<style lang="less">
+  @import './index.less';
+</style>
+
+<script>
+import router from '@system.router'
+import data from '../../data.js'
+export default {
+  private: {
+    scrollpage: false,
+    contentList: [],
+    news: []
+  },
+  protected: {
+  },
+  onInit() {
+    let that = this
+    that.contentList = data.news
+    that.news = data.news
+  },
+  onHide() {
+  },
+  onShow() {
+  },
+  renderMoreListItem: function() {
+    this.contentList = this.contentList.concat(this.news)
+  },
+  goDetail: function(news) {
+    let that = this
+    if (news.type === 'img') {
+      router.push({
+        uri: '/pages/detail',
+        params: {
+          info: news
+        }
+      })
+    }
+  }
+}
+</script>

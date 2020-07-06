@@ -1,0 +1,68 @@
+
+<import name="divHeader" src="../../components/header/index.ux"></import>
+
+<template>
+  <div class="page">
+    <divHeader title="下载列表"></divHeader>
+    <text class="empty" show="{{!contentList.length}}">暂无下载数据</text>
+    <list
+      show="{{contentList.length}}"
+      class="content-list"
+      scrollpage="{{scrollpage}}}"
+      onscrollbottom="renderMoreListItem"
+    >
+      <list-item type="download" class="content-list-item">
+        <div
+          class="itemBox"
+          for="download in contentList"
+        >
+          <image
+            src="{{download.img}}"
+            class="img"
+          ></image>
+          <div class="content">
+            <text class="title">{{ download.name }}</text>
+            <div class="desc">
+              <text>{{ download.size }}</text>
+              <text>{{ download.time }}</text>
+            </div>
+          </div>
+        </div>
+      </list-item>
+      <list-item type="loadMore" class="load-more">
+        <progress type="circular"></progress>
+        <text>加载更多</text>
+      </list-item>
+    </list>
+  </div>
+</template>
+
+<style lang="less">
+  @import './index.less';
+</style>
+
+<script>
+import router from '@system.router'
+import data from '../../data.js'
+export default {
+  private: {
+    scrollpage: false,
+    contentList: [],
+    download: []
+  },
+  protected: {
+  },
+  onInit() {
+    let that = this
+    that.contentList = data.download
+    that.download = data.download
+  },
+  onHide() {
+  },
+  onShow() {
+  },
+  renderMoreListItem: function() {
+    this.contentList = this.contentList.concat(this.download)
+  }
+}
+</script>

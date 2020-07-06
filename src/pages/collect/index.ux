@@ -12,13 +12,13 @@
         <div class="item-container">
           <div class="item-content" show="{{activeIndex === 0}}">
             <div class="empty">
-              <image src="/common/images/empty.png"></image>
+              <image src="/common/images/empty-list.png"></image>
               <text>暂无收藏书架</text>
             </div>
           </div>
           <div class="item-content" show="{{activeIndex === 1}}">
             <div class="empty">
-              <image src="/common/images/empty.png"></image>
+              <image src="/common/images/empty-list.png"></image>
               <text>暂无收藏网址</text>
             </div>
           </div>

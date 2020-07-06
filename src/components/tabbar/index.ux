@@ -1,14 +1,14 @@
 <import name="my-popup" src="apex-ui/components/popup/index"></import>
 <import name="my-button" src="apex-ui/components/button/index"></import>
 <import name="my-icon" src="apex-ui/components/icon/index"></import>
+<import name="my-toast" src="apex-ui/components/toast/index"></import>
+<import name="my-dialog" src="apex-ui/components/dialog/index"></import>
 
 <template>
   <div class="foot-wrap">
     <div class="foot-box" for="tabList" onclick="toggleTab($idx)">
       <image class="foot-box-img" src="{{$idx===tabIndex?$item.imgActive:$item.imgNormal}}"></image>
-      <text
-        style="color:{{$idx===tabIndex?'#e7655f':'#333'}};text-align:center;"
-        >{{ $item.label }}</text
+      <text style="color:{{$idx===tabIndex?'#e7655f':'#333'}};text-align:center;">{{ $item.label }}</text
       >
     </div>
     <div class="wrap">
@@ -16,68 +16,82 @@
         id="popupBottom" 
         position="bottom"
       >
-      <div class="pop-content">
-        <div class="pop-header">
-          <image src="../../common/images/be5.png"></image>
-          <div class="pop-login">
-            <text class="title">点击登录</text>
-            <text class="desc">欢迎使用云浏览器</text>
+        <div class="pop-content">
+          <div class="pop-header">
+            <image src="/common/images/be5.png"></image>
+            <div class="pop-login">
+              <text class="title" onclick="login">点击登录</text>
+              <text class="desc">欢迎使用云浏览器</text>
+            </div>
+            <div onclick="addDesktop">
+              <text class="add-desktop">加入桌面</text>
+            </div>
           </div>
-          <div class="add-desktop">
-            <text>加入桌面</text>
+          <div class="list-wrap">
+            <div class="list-item" onclick="download">
+              <image src="/common/images/download.png"></image>
+              <text>下载列表</text>
+            </div>
+            <div class="list-item" onclick="collect">
+              <image src="/common/images/add-collect.png"></image>
+              <text>添加收藏</text>
+            </div>
+            <div class="list-item" onclick="history">
+              <image src="/common/images/history.png"></image>
+              <text>历史记录</text>
+            </div>
+            <div class="list-item" onclick="share">
+              <image src="/common/images/share.png"></image>
+              <text>立即分享</text>
+            </div>
+          </div>
+          <div class="list-wrap">
+            <div class="list-item" onclick="toggleClean">
+              <image show="{{clean}}" src="/common/images/clean-active.png"></image>
+              <image show="{{!clean}}" src="/common/images/clean.png"></image>
+              <text>无痕模式</text>
+            </div>
+            <div class="list-item" onclick="toggleStory">
+              <image show="{{story}}" src="/common/images/story-active.png"></image>
+              <image show="{{!story}}" src="/common/images/story.png"></image>
+              <text>小说模式</text>
+            </div>
+            <div class="list-item" onclick="complaint">
+              <image src="/common/images/complaint.png"></image>
+              <text>投诉反馈</text>
+            </div>
+            <div class="list-item" onclick="book">
+              <image src="/common/images/book.png"></image>
+              <text>我的书架</text>
+            </div>
+          </div>
+          <div class="list-wrap">
+            <div class="list-item" onclick="setting">
+              <image src="/common/images/setting.png"></image>
+              <text>设置</text>
+            </div>
+            <div class="list-item" onclick="handleClickClose('popupBottom')">
+              <my-icon type="arrow-down" size="48"></my-icon>
+            </div>
+            <div class="list-item" onclick="refresh">
+              <image src="/common/images/refresh.png"></image>
+              <text>刷新</text>
+            </div>
           </div>
         </div>
-        <div class="list-wrap">
-          <div class="list-item">
-            <image src="../../common/images/download.png"></image>
-            <text>下载管理</text>
-          </div>
-          <div class="list-item">
-            <image src="../../common/images/add-collect.png"></image>
-            <text>添加收藏</text>
-          </div>
-          <div class="list-item">
-            <image src="../../common/images/history.png"></image>
-            <text>历史记录</text>
-          </div>
-          <div class="list-item">
-            <image src="../../common/images/share.png"></image>
-            <text>立即分享</text>
-          </div>
-        </div>
-        <div class="list-wrap">
-          <div class="list-item">
-            <image src="../../common/images/clean.png"></image>
-            <text>无痕模式</text>
-          </div>
-          <div class="list-item">
-            <image src="../../common/images/story.png"></image>
-            <text>小说模式</text>
-          </div>
-          <div class="list-item">
-            <image src="../../common/images/complaint.png"></image>
-            <text>投诉反馈</text>
-          </div>
-          <div class="list-item">
-            <image src="../../common/images/book.png"></image>
-            <text>我的书架</text>
-          </div>
-        </div>
-        <div class="list-wrap">
-          <div class="list-item">
-            <image src="../../common/images/setting.png"></image>
-            <text>设置</text>
-          </div>
-          <div class="list-item" onclick="handleClickClose('popupBottom')">
-            <my-icon type="arrow-down" size="48"></my-icon>
-          </div>
-          <div class="list-item">
-            <image src="../../common/images/refresh.png"></image>
-            <text>刷新</text>
-          </div>
-        </div>
-      </div>
+        <my-toast id="addDesktop"></my-toast>
       </my-popup>
+    </div>
+    <div class="dialog">
+      <my-dialog
+        visible="{{open}}"
+        title="投诉反馈"
+        content="反馈内容"
+        oncancel="close"
+        onaffirm="close"
+      >
+        <text>content</div>
+      </my-dialog>
     </div>
   </div>
 </template>
@@ -98,7 +112,9 @@
 
 <script>
 import router from '@system.router'
+import storage from '@system.storage'
 import data from '../../data.js'
+
 export default {
   props: {
     type: {
@@ -109,13 +125,28 @@ export default {
     tabList: [],
     tabIndex: 0,
     isLogin: 0,
-    userName: '路过的一只'
+    userName: '路过的一只',
+    clean: false,
+    story: false,
+    open: false,
   },
   onInit() {
     let that = this
     that.tabList = data[that.type]
     const { path = '/pages/home' } = router.getState()
     that.tabIndex = that.tabList.findIndex(item => item.url === path)
+    storage.get({
+      key: 'clean',
+      success: function(data) {
+        that.clean = data === 'true';
+      }
+    })
+    storage.get({
+      key: 'story',
+      success: function(data) {
+        that.story = data === 'true';
+      }
+    })
   },
   //点击导航栏
   toggleTab: function(index) {
@@ -136,6 +167,109 @@ export default {
   },
   handleClickClose(popup){
     this.$child(popup).hide()
+  },
+  login () {
+    router.replace({
+      uri: '/pages/login'
+    })
+  },
+  book () {
+    router.replace({
+      uri: '/pages/collect?book=true'
+    })
+  },
+  addDesktop () {
+    this.$child('addDesktop').showToast({
+      content: '加入桌面成功'
+    });
+    this.popHide()
+  },
+  download () {
+    router.replace({
+      uri: '/pages/download'
+    })
+  },
+  collect () {
+    this.$child('addDesktop').showToast({
+      content: '收藏成功'
+    });
+    this.popHide()
+  },
+  share () {
+    this.$child('addDesktop').showToast({
+      content: '分享成功'
+    });
+    this.popHide()
+  },
+  toggleClean () {
+    const that = this
+    storage.get({
+      key: 'clean',
+      success: function(data) {
+        const value = data === 'true' ? false : true
+        const tips = (data === 'true' ? '已关闭' : '已开启') + '无痕模式'
+        storage.set({
+          key: 'clean',
+          value,
+          success: function() {
+            that.clean = value
+            that.$child('addDesktop').showToast({
+              content: tips
+            });
+            that.popHide()
+          }
+        })
+      }
+    })
+  },
+  history () {
+    router.replace({
+      uri: '/pages/history'
+    })
+  },
+  toggleStory () {
+    const that = this
+    storage.get({
+      key: 'story',
+      success: function(data) {
+        const value = data === 'true' ? false : true
+        const tips = (data === 'true' ? '已关闭' : '已开启') + '小说模式'
+        storage.set({
+          key: 'story',
+          value,
+          success: function() {
+            that.story = value
+            that.$child('addDesktop').showToast({
+              content: tips
+            });
+            that.popHide()
+          }
+        })
+      }
+    })
+  },
+  complaint () {
+    this.popHide()
+    this.open = true
+  },
+  setting () {
+    router.replace({
+      uri: '/pages/setting'
+    })
+  },
+  refresh () {
+    this.$child('addDesktop').showToast({
+      content: '刷新成功'
+    });
+    this.popHide()
+  },
+  popHide() {
+    setTimeout(() => {
+      this.handleClickClose('popupBottom')
+    }, 1000)
+  },
+  close() {
+    this.open = false;
   }
 }
 </script>

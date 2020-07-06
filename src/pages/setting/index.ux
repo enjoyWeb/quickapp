@@ -1,0 +1,86 @@
+
+<import name="divHeader" src="../../components/header/index.ux"></import>
+<import name="my-icon" src="apex-ui/components/icon/index"></import>
+<import name="my-switch" src="apex-ui/components/switch/index"></import>
+
+<template>
+  <div class="page">
+    <divHeader title="设置"></divHeader>
+    <div class="item-box">
+      <text class='title'>搜索引擎</text>
+      <div class="desc">
+        <image src="/common/images/baidu.png"></image>
+        <my-icon type="arrow-fwd" size="48"></my-icon>
+      </div>
+    </div>
+    <div class="item-box">
+      <text class='title'>隐私政策</text>
+      <div class="desc">
+        <my-icon type="arrow-fwd" size="48"></my-icon>
+      </div>
+    </div>
+    <div class="item-box">
+      <text class='title'>关于我们</text>
+      <div class="desc">
+        <my-icon type="arrow-fwd" size="48"></my-icon>
+      </div>
+    </div>
+    <div class="item-box">
+      <text class='title'>搜索优化</text>
+      <div class="desc">
+        <my-switch value="true" onchange="toggleSearch"></my-switch>
+      </div>
+    </div>
+    <div class="item-box">
+      <text class='title'>最近阅读</text>
+      <div class="desc">
+        <my-switch value="true" onchange="toggleRead"></my-switch>
+      </div>
+    </div>
+    <div class="item-box">
+      <text class='title'>联系我们</text>
+      <div class="desc">
+        <my-icon type="arrow-fwd" size="48"></my-icon>
+      </div>
+    </div>
+    <div class="item-box">
+      <text class='title'>清楚数据</text>
+      <div class="desc">
+        <my-icon type="arrow-fwd" size="48"></my-icon>
+      </div>
+    </div>
+    <text class='version'>
+      版本号：1.0.0
+    </text>
+  </div>
+</template>
+
+<style lang="less">
+  @import './index.less';
+</style>
+
+<script>
+import router from '@system.router'
+
+export default {
+  private: {
+    scrollpage: false,
+    contentList: [],
+    download: []
+  },
+  protected: {
+  },
+  onInit() {
+  },
+  onHide() {
+  },
+  onShow() {
+  },
+  toggleSearch(e) {
+    console.log('toggleSearch changed!', e)
+  },
+  toggleRead(e) {
+    console.log('toggleRead changed!', e)
+  }
+}
+</script>

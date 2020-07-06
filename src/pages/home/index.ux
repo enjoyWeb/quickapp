@@ -12,7 +12,7 @@
       <image src="./img/baidu.png" class="item" style="object-fit: cover" onclick="onDrump('https://m.baidu.com/')"></image>
       <image src="./img/fei.png" class="item" style="object-fit: cover" onclick="onDrump('https://voice.baidu.com/act/newpneumonia/newpneumonia/?from=osari_aladin_top1')"></image>
       <image src="./img/weibo.png" class="item" style="object-fit: cover" onclick="onDrump('https://m.weibo.cn')"></image>
-      <a href="/video">
+      <a href="/pages//video">
         <image src="./img/zixun.png" class="item" style="object-fit: cover"></image>
       </a>
     </div>
