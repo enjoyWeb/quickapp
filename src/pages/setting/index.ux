@@ -46,7 +46,7 @@
         <my-icon type="arrow-fwd" size="48"></my-icon>
       </div>
     </div>
-    <div class="item-box" onclick="singleSelect">
+    <div class="item-box" onclick="multiSelect">
       <text class='title'>清除数据</text>
       <div class="desc">
         <my-icon type="arrow-fwd" size="48"></my-icon>

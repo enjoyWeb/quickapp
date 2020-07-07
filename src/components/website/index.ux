@@ -1,0 +1,75 @@
+<import name="divHeader" src="../../components/header/index.ux"></import>
+
+<template>
+  <div>
+    <div class="empty">
+      <image src="/common/images/empty-list.png"></image>
+      <text>暂无收藏网址</text>
+    </div>
+
+    <list
+      show="{{contentList.length}}"
+      class="content-list"
+      scrollpage="{{scrollpage}}}"
+      onscrollbottom="renderMoreListItem"
+    >
+      <list-item type="news" class="content-list-item">
+        <div for="news in contentList">
+          <div
+            class="itemBox"
+            onclick="goDetail(news)"
+          >
+            <image src="{{news.profile}}" class="img"></image>
+            <text>{{ news.title }}</text>
+          </div>
+        </div>
+      </list-item>
+      <list-item type="loadMore" class="load-more">
+        <progress type="circular"></progress>
+        <text>加载更多</text>
+      </list-item>
+    </list>
+  </div>
+</template>
+
+<style lang="less">
+  @import './index.less';
+</style>
+
+<script>
+import router from '@system.router'
+import data from '../../data.js'
+
+export default {
+  private: {
+    scrollpage: false,
+    contentList: [],
+    news: []
+  },
+  protected: {
+  },
+  onInit() {
+    let that = this
+    that.contentList = data.news
+    that.news = data.news
+  },
+  onHide() {
+  },
+  onShow() {
+  },
+  renderMoreListItem: function() {
+    this.contentList = this.contentList.concat(this.news)
+  },
+  goDetail: function(news) {
+    let that = this
+    if (news.type === 'img') {
+      router.push({
+        uri: '/pages/detail',
+        params: {
+          info: news
+        }
+      })
+    }
+  }
+}
+</script>

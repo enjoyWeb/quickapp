@@ -32,10 +32,6 @@ export default Component({
     ...mapMutations(['setFrameUrl'])
   },
   onInit() {
-    // var page = router.getState()
-    // console.log(`page index = ${page.index}`)
-    // console.log(`page name = ${page.name}`)
-    // console.log(`page path = ${page.path}`)
   },
   onHide() {
     this.setFrameUrl('')

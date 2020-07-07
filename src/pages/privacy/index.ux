@@ -4,7 +4,7 @@
 
 <template>
   <div class="page">
-    <divHeader title="隐私政策" url="/pages/setting"></divHeader>
+    <divHeader title="隐私政策" url="{{url}}"></divHeader>
     <my-segmented-control theme="positive" current="{{current}}" values="{{ segments }}" onchange="changeTab"></my-segmented-control>
     <div class="content" show="{{current === 0}}">
       <text>隐私政策</text>
@@ -27,11 +27,15 @@ export default {
     current: 0,
     segments: [
       '隐私政策', '用户协议'
-    ]
+    ],
+    url: '/pages/setting'
   },
   protected: {
   },
-  onInit() {
+  onInit(query) {
+    const { type = 0 } = query
+    this.current = type
+    if (Object.keys(query).length) this.url = '/pages/login'
   },
   onHide() {
   },

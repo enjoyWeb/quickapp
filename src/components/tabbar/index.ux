@@ -191,7 +191,10 @@ export default {
   },
   book () {
     router.replace({
-      uri: '/pages/collect?book=true'
+      uri: '/pages/collect',
+      params: {
+        book: true
+      }
     })
   },
   addDesktop () {
@@ -285,11 +288,9 @@ export default {
     }, 1000)
   },
   clickCancel() {
-    console.log('取消')
     this.open = false;
   },
   clickConfirm() {
-    console.log('确认')
     this.open = false;
   },
   singleSelect() {

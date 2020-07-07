@@ -125,6 +125,68 @@ export default {
             time: '2020-07-06'
         }
     ],
+    books: [
+        {
+            img: 'https://p3.pstatp.com/list/pgc-image/15389877969705eb4ead894',
+            title: '大明湖畔',
+            desc: '第888章 顺治之兴',
+            update: '1天前更新'
+        },
+        {
+            img: 'http://i0.pstatp.com/large/d85f0000d938dad77e4c',
+            title: '大国战绩',
+            desc: '第666章 你们把我飞机怎么了！',
+            update: '16小时前更新'
+        },
+        {
+            img: 'https://p3.pstatp.com/list/pgc-image/15389877969705eb4ead894',
+            title: '大明湖畔',
+            desc: '第888章 顺治之兴',
+            update: '1天前更新'
+        },
+        {
+            img: 'http://i0.pstatp.com/large/d85f0000d938dad77e4c',
+            title: '大国战绩',
+            desc: '第666章 你们把我飞机怎么了！',
+            update: '16小时前更新'
+        },
+        {
+            img: 'https://p3.pstatp.com/list/pgc-image/15389877969705eb4ead894',
+            title: '大明湖畔',
+            desc: '第888章 顺治之兴',
+            update: '1天前更新'
+        },
+        {
+            img: 'http://i0.pstatp.com/large/d85f0000d938dad77e4c',
+            title: '大国战绩',
+            desc: '第666章 你们把我飞机怎么了！',
+            update: '16小时前更新'
+        },
+        {
+            img: 'https://p3.pstatp.com/list/pgc-image/15389877969705eb4ead894',
+            title: '大明湖畔',
+            desc: '第888章 顺治之兴',
+            update: '1天前更新'
+        },
+        {
+            img: 'http://i0.pstatp.com/large/d85f0000d938dad77e4c',
+            title: '大国战绩',
+            desc: '第666章 你们把我飞机怎么了！',
+            update: '16小时前更新'
+        },
+        {
+            img: 'https://p3.pstatp.com/list/pgc-image/15389877969705eb4ead894',
+            title: '大明湖畔',
+            desc: '第888章 顺治之兴',
+            update: '1天前更新'
+        },
+        {
+            img: 'http://i0.pstatp.com/large/d85f0000d938dad77e4c',
+            title: '大国战绩',
+            desc: '第666章 你们把我飞机怎么了！',
+            update: '16小时前更新'
+        }
+    ],
     news: [
         {
             img: [],

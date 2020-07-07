@@ -1,0 +1,67 @@
+<template>
+  <div>
+    <div class="empty" show="{{!contentList.length}}">
+      <image src="/common/images/empty-list.png"></image>
+      <text>暂无收藏书架</text>
+    </div>
+
+    <list
+      show="{{contentList.length}}"
+      class="content-list"
+      scrollpage="{{scrollpage}}}"
+      onscrollbottom="renderMoreListItem"
+    >
+      <list-item type="list" class="content-list-item">
+        <div
+          class="itemBox"
+          for="list in contentList"
+        >
+          <image class="img" src="{{list.img}}"></image>
+          <div class="content">
+            <div class="title">
+              <text>{{ list.title }}</text>
+            </div>
+            <div class="desc">
+              <text>最新章节：</text>
+              <text>{{ list.desc }}</text>
+            </div>
+            <text class="update">{{ list.update }}</text>
+          </div>
+        </div>
+      </list-item>
+      <list-item type="loadMore" class="load-more">
+        <progress type="circular"></progress>
+        <text>加载更多</text>
+      </list-item>
+    </list>
+  </div>
+</template>
+
+<style lang="less">
+  @import './index.less';
+</style>
+
+<script>
+import router from '@system.router'
+import data from '../../data.js'
+
+export default {
+  data: {
+    scrollpage: false,
+    contentList: [],
+    list: []
+  },
+  onInit() {
+    let that = this
+    that.contentList = data.books
+    that.list = data.books
+  },
+  onHide() {
+  },
+  onShow() {
+  },
+  renderMoreListItem: function() {
+    this.contentList = this.contentList.concat(this.list)
+  }
+}
+</script>

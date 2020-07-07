@@ -23,7 +23,7 @@
           show="{{searchFocus}}"
         />
       </div>
-      <text class="search-text" onclick="doSearch" show="{{searchFocus}}">搜索</text>
+      <text class="search-text" onclick="doSearch('')" show="{{searchFocus}}">搜索</text>
     </div>
     <!-- 搜索页 -->
     <list

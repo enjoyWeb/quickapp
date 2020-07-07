@@ -33,11 +33,12 @@
         <text>登录</text>
       </div>
       <div class="protocol-box">
-        <text
-          >点击查看<span class="blue">“用户协议”</span>和<span class="blue"
-            >“隐私协议”</span
-          ></text
-        >
+        <text>
+          点击查看
+          <span class="blue" onclick="jumpPrivacy(1)">“用户协议”</span>
+          和
+          <span class="blue" onclick="jumpPrivacy(0)">“隐私协议”</span>
+        </text>
       </div>
     </div>
   </div>
@@ -80,6 +81,14 @@ export default {
       params: {
         isLogin: 1,
         userName: this.phoneValue
+      }
+    })
+  },
+  jumpPrivacy (type) {
+    router.replace({
+      uri:'/pages/privacy',
+      params: {
+        type
       }
     })
   }

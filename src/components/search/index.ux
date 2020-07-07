@@ -37,10 +37,10 @@ export default {
   doSearch() {
     barcode.scan({
       success: function(data) {
-        console.log(`handling success: ${data.result}`)
+        console.log(`scan success: ${data.result}`)
       },
       fail: function(data, code) {
-        console.log(`handling fail, code = ${code}`)
+        console.log(`scan fail, code = ${code}`)
       }
     })
   }

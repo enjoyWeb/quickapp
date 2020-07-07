@@ -1,8 +1,11 @@
+<import name="bookList" src="../../components/booklist/index.ux"></import>
+<import name="website" src="../../components/website/index.ux"></import>
+
 <template>
   <div>
     <image class="back" src="/common/images/b2h.png" onclick="back"></image>
 
-    <tabs class="tabs" onchange="changeTabactive" index="0">
+    <tabs class="tabs" onchange="changeTabactive" index="{{activeIndex}}">
       <tab-bar class="tab-bar">
         <text class="{{activeIndex === 0 ? 'tab-text active-tab' : 'tab-text'}}">书架</text>
         <text class="{{activeIndex === 1 ? 'tab-text active-tab' : 'tab-text'}}">网址</text>
@@ -11,16 +14,10 @@
       <tab-content class="tab-content" scrollable="{{scrollable}}">
         <div class="item-container">
           <div class="item-content" show="{{activeIndex === 0}}">
-            <div class="empty">
-              <image src="/common/images/empty-list.png"></image>
-              <text>暂无收藏书架</text>
-            </div>
+            <bookList></bookList>
           </div>
           <div class="item-content" show="{{activeIndex === 1}}">
-            <div class="empty">
-              <image src="/common/images/empty-list.png"></image>
-              <text>暂无收藏网址</text>
-            </div>
+            <website></website>
           </div>
         </div>
       </tab-content>
@@ -34,26 +31,22 @@
 
 <script>
 import router from '@system.router'
+import data from '../../data.js'
+
 export default {
   private: {
     componentName: 'tabs',
     scrollable: true,
-    activeIndex: 0
+    activeIndex: 1
   },
-  onInit () {
+  onInit(query) {
+    const { book = false } = query
+    this.activeIndex = book ? 0 : 1
   },
   changeTabactive (e) {
     this.activeIndex = e.index
   },
   back () {
-    // const length = router.getLength()
-    // if (length > 1) {
-    //   router.back()
-    // } else {
-    //   router.replace({
-    //     uri: '/pages/home'
-    //   })
-    // }
     router.replace({
       uri: '/pages/home'
     })
