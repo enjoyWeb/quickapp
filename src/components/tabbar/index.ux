@@ -3,8 +3,6 @@
 <import name="my-icon" src="apex-ui/components/icon/index"></import>
 <import name="my-toast" src="apex-ui/components/toast/index"></import>
 <import name="my-select" src="apex-ui/components/select/index"></import>
-<import name="my-textarea" src="apex-ui/components/textarea/index"></import>
-<import name="my-input" src="apex-ui/components/input/index"></import>
 <import name="dialog-bar" src="../../components/dialog/index.ux"></import>
 
 <template>
@@ -43,7 +41,7 @@
               <image src="/common/images/history.png"></image>
               <text>历史记录</text>
             </div>
-            <div class="list-item" onclick="share">
+            <div class="list-item" onclick="toggleShare">
               <image src="/common/images/share.png"></image>
               <text>立即分享</text>
             </div>
@@ -82,7 +80,7 @@
             </div>
           </div>
         </div>
-        <my-toast id="addDesktop"></my-toast>
+        <my-toast id="toast"></my-toast>
       </my-popup>
     </div>
     <div class="dialog">
@@ -97,11 +95,11 @@
             <text>{{result}}</text>
             <my-icon type="arrow-down" size="40"></my-icon>
           </div>
-          <div class="mar20 textarea">
-            <my-textarea placeholder="请详细描述您遇到的问题，您的意见及建议" rows="{{3}}"></my-textarea>
+          <div class="mar20">
+            <textarea placeholder="请详细描述您遇到的问题，您的意见及建议" class="textarea"></textarea>
           </div>
-          <div class="mar20 input">
-            <my-input value="{{ phone }}" type="number" placeholder="填写你的联系方式"></my-input>
+          <div class="mar20">
+            <input class="input-text" value="{{ phone }}" type="number" placeholder="填写你的联系方式"></input>
           </div>
         </div>
       </dialog-bar>
@@ -112,21 +110,15 @@
 
 <style lang="less">
   @import './index.less';
-  .wrap {
-    flex-direction: column;
-    justify-content: center;
-    position: fixed;
-    z-index: 100;
-  }
-  .icon-close {
-    padding-top: 31px;
-    padding-right: 30px;
-  }
 </style>
 
 <script>
 import router from '@system.router'
 import storage from '@system.storage'
+import share from '@system.share'
+import shareSe from '@service.share'
+import shortcut from '@system.shortcut'
+import account from '@service.account'
 import data from '../../data.js'
 
 export default {
@@ -198,10 +190,47 @@ export default {
     })
   },
   addDesktop () {
-    this.$child('addDesktop').showToast({
-      content: '加入桌面成功'
-    });
-    this.popHide()
+    const that = this
+    account.authorize({
+      type: 'code',
+      // redirectUri: 'http://www.example.com/',
+      success: function(data) {
+        console.log(`authorize success: ${JSON.stringify(data)}`)
+        shortcut.hasInstalled({
+          success: function(isInstalled) {
+            console.log('isInstalled->',isInstalled)
+            if (!isInstalled) {
+              shortcut.install({
+                message: '保存到桌面，秒开浏览器',
+                success: function() {
+                  that.$child('toast').showToast({
+                    content: '加入桌面成功'
+                  });
+                  that.popHide()
+                },
+                fail: function(errmsg, errcode) {
+                  that.$child('toast').showToast({
+                    content: '桌面图标创建失败，错误信息: ' + errcode + '---' + errmsg
+                  })
+                }
+              })
+            } else {
+              that.$child('toast').showToast({
+                content: '桌面图标已经存在！'
+              });
+            }
+          },
+          fail: function(errmsg, errcode) {
+            that.$child('toast').showToast({
+              content: '桌面图标创建失败，错误信息: ' + errcode + '---' + errmsg
+            })
+          }
+        })
+      },
+      fail: function(data, code) {
+        console.log(`authorize fail, code = ${code}`)
+      }
+    })
   },
   download () {
     router.replace({
@@ -209,15 +238,38 @@ export default {
     })
   },
   collect () {
-    this.$child('addDesktop').showToast({
+    this.$child('toast').showToast({
       content: '收藏成功'
     });
     this.popHide()
   },
-  share () {
-    this.$child('addDesktop').showToast({
-      content: '分享成功'
-    });
+  toggleShare () {
+    try{
+      shareSe.share({
+        shareType: 0,
+        title: '预感浏览器',
+        summary: '极简设计，智能搜索，阅读模式，秘密浏览，安全免费',
+        imagePath: '/common/logo.png',
+        targetUrl: 'https://m.baidu.com/',
+        success: function (data) {
+          console.log('handling success')
+        },
+        fail: function (data, code) {
+          console.log(`handling fail, code = ${code}`)
+        }
+      });
+    } catch (err) {
+      share.share({
+        type: 'text/webviewhtml',
+        data: '预感浏览器',
+        success: function (data) {
+          console.log('handling success')
+        },
+        fail: function (data, code) {
+          console.log(`handling fail, code = ${code}`)
+        }
+      })
+    }
     this.popHide()
   },
   toggleClean () {
@@ -232,7 +284,7 @@ export default {
           value,
           success: function() {
             that.clean = value
-            that.$child('addDesktop').showToast({
+            that.$child('toast').showToast({
               content: tips
             });
             that.popHide()
@@ -258,7 +310,7 @@ export default {
           value,
           success: function() {
             that.story = value
-            that.$child('addDesktop').showToast({
+            that.$child('toast').showToast({
               content: tips
             });
             that.popHide()
@@ -277,10 +329,10 @@ export default {
     })
   },
   refresh () {
-    this.$child('addDesktop').showToast({
-      content: '刷新成功'
-    });
-    this.popHide()
+    const r = router.getState()
+    router.replace({
+      uri: r.path
+    })
   },
   popHide() {
     setTimeout(() => {

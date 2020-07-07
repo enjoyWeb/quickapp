@@ -34,9 +34,9 @@
       </div>
       <div class="protocol-box">
         <text>
-          点击查看
+          <span>点击查看</span>
           <span class="blue" onclick="jumpPrivacy(1)">“用户协议”</span>
-          和
+          <span>和</span>
           <span class="blue" onclick="jumpPrivacy(0)">“隐私协议”</span>
         </text>
       </div>

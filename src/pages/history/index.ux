@@ -9,7 +9,7 @@
     <list
       show="{{contentList.length}}"
       class="content-list"
-      scrollpage="{{scrollpage}}}"
+      scrollpage="{{scrollpage}}"
       onscrollbottom="renderMoreListItem"
     >
       <list-item type="news" class="content-list-item">

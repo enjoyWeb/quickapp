@@ -1,7 +1,7 @@
 <import name="divHeader" src="../../components/header/index.ux"></import>
 
 <template>
-  <div>
+  <div class="page">
     <div class="empty">
       <image src="/common/images/empty-list.png"></image>
       <text>暂无收藏网址</text>
@@ -10,18 +10,17 @@
     <list
       show="{{contentList.length}}"
       class="content-list"
-      scrollpage="{{scrollpage}}}"
+      scrollpage="{{scrollpage}}"
       onscrollbottom="renderMoreListItem"
     >
       <list-item type="news" class="content-list-item">
-        <div for="news in contentList">
-          <div
-            class="itemBox"
-            onclick="goDetail(news)"
-          >
-            <image src="{{news.profile}}" class="img"></image>
-            <text>{{ news.title }}</text>
-          </div>
+        <div
+          class="itemBox"
+          for="news in contentList"
+          onclick="goDetail(news)"
+        >
+          <image src="{{news.profile}}" class="img"></image>
+          <text>{{ news.title }}</text>
         </div>
       </list-item>
       <list-item type="loadMore" class="load-more">

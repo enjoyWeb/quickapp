@@ -24,6 +24,11 @@
 import barcode from '@system.barcode'
 import router from '@system.router'
 export default {
+  props: {
+    url: {
+      default: '/pages/home'
+    }
+  },
   data: {
     searchValue: ''
   },
@@ -31,7 +36,10 @@ export default {
   },
   setValue() {
     router.replace({
-      uri: '/pages/search'
+      uri: '/pages/search',
+      params: {
+        url: this.url
+      }
     })
   },
   doSearch() {

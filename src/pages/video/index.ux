@@ -4,13 +4,13 @@
 <template>
   <div class="page">
     <div class="search-wrap">
-      <search></search>
+      <search url="/pages/video"></search>
     </div>
 
     <!-- 消息列表 -->
     <list
       class="content-list"
-      scrollpage="{{scrollpage}}}"
+      scrollpage="{{scrollpage}}"
       onscrollbottom="renderMoreListItem"
     >
       <list-item type="news" class="content-list-item">

@@ -1,22 +1,20 @@
 <template>
-  <div>
-    <stack class="dialog" show="{{visible}}">
-      <div class="dialog-container">
-        <div class="dialog-title"><text>{{title}}</text></div>
-        <div class="content">
-          <slot></slot>
+  <div class="dialog" show="{{visible}}">
+    <div class="dialog-container">
+      <div class="dialog-title"><text>{{title}}</text></div>
+      <div class="content">
+        <slot></slot>
+      </div>
+      <div class="btns">
+        <div if="type !== 'confirm'" class="default-btn" @click="closeBtn">
+          <text class="text">{{cancelText}}</text>
+          <text class="border-right"></text>
         </div>
-        <div class="btns">
-          <div if="type !== 'confirm'" class="default-btn" @click="closeBtn">
-            <text class="text">{{cancelText}}</text>
-            <text class="border-right"></text>
-          </div>
-          <div class="confirm-btn" @click="confirmBtn">
-            <text> {{confirmText}}</text>
-          </div>
+        <div class="confirm-btn" @click="confirmBtn">
+          <text> {{confirmText}}</text>
         </div>
       </div>
-    </stack>
+    </div>
   </div>
 </template>
 

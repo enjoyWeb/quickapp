@@ -26,6 +26,24 @@
     },
     {
       "name": "system.storage"
+    },
+    {
+      "name": "system.share"
+    },
+    {
+      "name": "service.share",
+      "params": {
+        "appSign": "abcdefg",
+        "qqKey": "1234567",
+        "wxKey": "gh_b0a60a4ab242",
+        "sinaKey": "1234"
+      }
+    },
+    {
+      "name": "system.shortcut"
+    },
+    {
+      "name": "service.account"
     }
   ],
   "permissions": [

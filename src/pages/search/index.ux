@@ -4,7 +4,7 @@
       <image
         src="/common/images/b2j.png"
         class="back-img"
-        onclick="goResult"
+        onclick="back"
         show="{{searchFocus}}"
       ></image>
       <div class="search-box">
@@ -123,12 +123,16 @@ export default {
       'vivo X23',
       '快应用新版本',
       '崔永元'
-    ]
+    ],
+    backUrl: '/pages/video'
   },
   protected: {
     keyword: ''
   },
-  onInit() {
+  onInit(query) {
+    console.log(query)
+    const { url } = query
+    if (url) this.backUrl = url
   },
   onHide() {
     clearInterval(this.keyInterval)
@@ -191,6 +195,11 @@ export default {
     clearInterval(that.keyInterval)
     that.setKeyInterval()
     that.setSearchFocus(false)
+  },
+  back: function() {
+    router.replace({
+      uri: this.backUrl
+    })
   }
 }
 </script>

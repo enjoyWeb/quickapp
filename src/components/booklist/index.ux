@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <div class="empty" show="{{!contentList.length}}">
       <image src="/common/images/empty-list.png"></image>
       <text>暂无收藏书架</text>
@@ -8,7 +8,7 @@
     <list
       show="{{contentList.length}}"
       class="content-list"
-      scrollpage="{{scrollpage}}}"
+      scrollpage="{{scrollpage}}"
       onscrollbottom="renderMoreListItem"
     >
       <list-item type="list" class="content-list-item">

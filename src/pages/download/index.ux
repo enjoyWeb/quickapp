@@ -8,7 +8,7 @@
     <list
       show="{{contentList.length}}"
       class="content-list"
-      scrollpage="{{scrollpage}}}"
+      scrollpage="{{scrollpage}}"
       onscrollbottom="renderMoreListItem"
     >
       <list-item type="download" class="content-list-item">

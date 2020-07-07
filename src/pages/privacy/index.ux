@@ -5,7 +5,9 @@
 <template>
   <div class="page">
     <divHeader title="隐私政策" url="{{url}}"></divHeader>
-    <my-segmented-control theme="positive" current="{{current}}" values="{{ segments }}" onchange="changeTab"></my-segmented-control>
+    <div class="segment">
+      <my-segmented-control theme="positive" current="{{current}}" values="{{ segments }}" onchange="changeTab"></my-segmented-control>
+    </div>
     <div class="content" show="{{current === 0}}">
       <text>隐私政策</text>
     </div>

@@ -1,8 +1,7 @@
 <import name="tabbar" src="../../components/tabbar/index.ux"></import>
 <import name="search" src="../../components/search/index.ux"></import>
 <import name="my-select" src="apex-ui/components/select/index"></import>
-<import name="my-textarea" src="apex-ui/components/textarea/index"></import>
-<import name="my-input" src="apex-ui/components/input/index"></import>
+<import name="my-icon" src="apex-ui/components/icon/index"></import>
 <import name="dialog-bar" src="../../components/dialog/index.ux"></import>
 
 <template>
@@ -10,39 +9,47 @@
     <image src="./img/jubao.png" class="jubao" style="object-fit: cover" onclick="toggleJubao"></image>
     <image src="./img/logo.png" class="logo" style="object-fit: cover"></image>
     <div class="search">
-      <search></search>
+      <search url="/pages/home"></search>
     </div>
     <div class="iconlist">
-      <image src="./img/baidu.png" class="item" style="object-fit: cover" onclick="onDrump('https://m.baidu.com/')"></image>
-      <image src="./img/fei.png" class="item" style="object-fit: cover" onclick="onDrump('https://voice.baidu.com/act/newpneumonia/newpneumonia/?from=osari_aladin_top1')"></image>
-      <image src="./img/weibo.png" class="item" style="object-fit: cover" onclick="onDrump('https://m.weibo.cn')"></image>
-      <a href="/pages/video">
-        <image src="./img/zixun.png" class="item" style="object-fit: cover"></image>
-      </a>
+      <div class="item">
+        <image src="./img/baidu.png" class="img" style="object-fit: cover" onclick="onDrumpFrame('https://m.baidu.com/')"></image>
+        <text>百度</text>
+      </div>
+      <div class="item">
+        <image src="./img/fei.png" class="img" style="object-fit: cover" onclick="onDrumpFrame('https://voice.baidu.com/act/newpneumonia/newpneumonia/?from=osari_aladin_top1')"></image>
+        <text>疫情</text>
+      </div>
+      <div class="item">
+        <image src="./img/weibo.png" class="img" style="object-fit: cover" onclick="onDrumpFrame('https://m.weibo.cn')"></image>
+        <text>微博</text>
+      </div>
+      <div class="item">
+        <image src="./img/zixun.png" class="img" style="object-fit: cover" onclick="onDrump('/pages/video')"></image>
+        <text>资讯</text>
+      </div>
     </div>
     <tabbar></tabbar>
-    <div class="dialog">
-      <dialog-bar
-        visible="{{open}}"
-        title="我要举报"
-        oncancel="clickCancel()"
-        onconfirm="clickConfirm()"
-      >
-        <div class="wrap-form">
-          <div class="item mar20" onclick="singleSelect">
-            <text>{{result}}</text>
-            <my-icon type="arrow-down" size="40"></my-icon>
-          </div>
-          <div class="mar20 textarea">
-            <my-textarea placeholder="请详细描述您遇到的问题，您的意见及建议" rows="{{3}}"></my-textarea>
-          </div>
-          <div class="mar20 input">
-            <my-input value="{{ phone }}" type="number" placeholder="填写你的联系方式"></my-input>
-          </div>
+    <dialog-bar
+      visible="{{open}}"
+      title="我要举报"
+      oncancel="clickCancel()"
+      onconfirm="clickConfirm()"
+    >
+      <div class="wrap-form">
+        <div class="item mar20" onclick="singleSelect">
+          <text>{{result}}</text>
+          <my-icon type="arrow-down" size="40"></my-icon>
         </div>
-      </dialog-bar>
+        <div class="mar20">
+          <textarea placeholder="请详细描述您遇到的问题，您的意见及建议" class="textarea"></textarea>
+        </div>
+        <div class="mar20">
+          <input class="input-text" value="{{ phone }}" type="number" placeholder="填写你的联系方式"></input>
+        </div>
+      </div>
       <my-select id="select" oncomfirm="singleClose"></my-select>
-    </div>
+    </dialog-bar>
   </div>
 </template>
 
@@ -72,10 +79,15 @@ export default Component({
   },
   onShow() {
   },
-  onDrump(url) {
+  onDrumpFrame(url) {
     this.setFrameUrl(url)
     router.replace({
       uri: '/pages/frame'
+    })
+  },
+  onDrump(url) {
+    router.replace({
+      uri: url
     })
   },
   toggleJubao () {
