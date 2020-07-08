@@ -207,7 +207,7 @@
 
 <script>
 import router from '@system.router'
-import data from '../data.js'
+import data from '../../data.js'
 export default {
   private: {
     url: '../common/img/phone.png',
