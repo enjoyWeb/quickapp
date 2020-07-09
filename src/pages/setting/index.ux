@@ -69,7 +69,6 @@
           <text>微信:XXXXXXXXX</text>
         </div>
       </dialog-bar>
-      <my-select id="select" oncomfirm="singleClose"></my-select>
     </div>
   </div>
 </template>
@@ -80,6 +79,8 @@
 
 <script>
 import router from '@system.router'
+import storage from '@system.storage'
+import { SEARCH_NAME, SEARCH_VALUE } from '../../util/const.js'
 
 export default {
   private: {
@@ -92,6 +93,13 @@ export default {
   protected: {
   },
   onInit() {
+    const that = this
+    storage.get({
+      key: 'search',
+      success: (data) => {
+        that.search = SEARCH_NAME[data]
+      }
+    })
   },
   onHide() {
   },
@@ -110,13 +118,17 @@ export default {
     this.open = false
   },
   singleSelect() {
-    let opt = ["360", "百度", "神马", "搜狗"]
+    let opt = Object.values(SEARCH_NAME)
     this.$child('select').showSelect({
       options: opt,
     })
   },
   singleClose(evt) {
     this.search = evt.detail.data || "百度"
+    storage.set({
+      key: 'search',
+      value: SEARCH_VALUE[this.search]
+    })
   },
   multiSelect() {
     let opt = ["地址栏数据记录", "历史记录", "Cookies", "缓存", "表单密码"]

@@ -31,7 +31,9 @@ export default Component({
   methods: {
     ...mapMutations(['setFrameUrl'])
   },
-  onInit() {
+  onInit(query) {
+    const { url } = query
+    if (url) this.websrc = url
   },
   onHide() {
     this.setFrameUrl('')

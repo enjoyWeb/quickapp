@@ -99,7 +99,10 @@
 <script>
 import device from '@system.device'
 import router from '@system.router'
+import prompt from '@system.prompt'
 import data from '../../data.js'
+import util from '../../util/util.js'
+
 export default {
   private: {
     currentKeywords: '',
@@ -130,7 +133,6 @@ export default {
     keyword: ''
   },
   onInit(query) {
-    console.log(query)
     const { url } = query
     if (url) this.backUrl = url
   },
@@ -167,9 +169,18 @@ export default {
     // let that = this
     // that.searchFocus = bool
     // that.$element('search_input').focus({ focus: bool })
-    router.replace({
-      uri: '/pages/video'
-    })
+    try {
+      util.getBrowserSearch(this.searchValue).then(url => {
+        router.replace({
+          uri: '/pages/frame',
+          params: {
+            url
+          }
+        })
+      })
+    } catch (err) {
+      prompt.showToast({ message: `搜索出错：${err.data}` })
+    }
   },
   setValue: function(e) {
     this.searchValue = e.text
