@@ -23,6 +23,8 @@
 <script>
 import barcode from '@system.barcode'
 import router from '@system.router'
+import prompt from '@system.prompt'
+
 export default {
   props: {
     url: {
@@ -46,9 +48,21 @@ export default {
     barcode.scan({
       success: function(data) {
         console.log(`scan success: ${data.result}`)
+        const { result } = data
+        if (result && result.indexOf('http') !== -1) {
+          router.replace({
+            uri: '/pages/frame',
+            params: {
+              url: result
+            }
+          })
+        } else {
+          prompt.showToast({ message: result })
+        }
       },
       fail: function(data, code) {
         console.log(`scan fail, code = ${code}`)
+        prompt.showToast({ message: data })
       }
     })
   }
