@@ -1,0 +1,39 @@
+<template>
+  <tab-bar class="underline-tab-bar" mode="{{mode}}">
+    <div class="tab-item" for="tabList">
+      <text
+        class="tab-title text-black"
+        style="color: {{$idx === selectedTab ? activatedColor : deactivatedColor}}"
+      >
+        {{ $item }}
+      </text>
+      <div
+        class="tab-line"
+        style="background-color: {{$idx === selectedTab ? activatedColor : 'transparent'}}"
+      ></div>
+    </div>
+  </tab-bar>
+</template>
+
+<script>
+import router from '@system.router'
+export default {
+  props: {
+    tabList: {},
+    selectedTab: {},
+    deactivatedColor: {
+      default: '#1a1a1a'
+    },
+    activatedColor: {
+      default: '#20a0ff'
+    },
+    mode: {
+      default: 'fixed'
+    }
+  }
+}
+</script>
+
+<style lang="less">
+  @import './index.less';
+</style>

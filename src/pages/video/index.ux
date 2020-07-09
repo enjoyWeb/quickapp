@@ -1,5 +1,6 @@
 <import name="tabbar" src="../../components/tabbar/index.ux"></import>
 <import name="search" src="../../components/search/index.ux"></import>
+<import name="underline-tab-bar" src="../../components/underlineTabBar/index.ux"></import>
 
 <template>
   <div class="page">
@@ -8,46 +9,58 @@
     </div>
 
     <!-- 消息列表 -->
-    <list
-      class="content-list"
-      scrollpage="{{scrollpage}}"
-      onscrollbottom="renderMoreListItem"
-    >
-      <list-item type="news" class="content-list-item">
-        <div
-          class="itemBox"
-          for="news in contentList"
-          onclick="goDetail(news)"
-        >
-          <text class="title">{{ news.title }}</text>
-          <div class="img-box" show="{{news.img.length>0&&news.type==='img'}}">
-            <image
-              for="(imgIndex, img) in news.img"
-              src="{{img}}"
-              class="{{news.img.length===1?'big-img':'three-img'}}"
-              show="{{imgIndex<3}}"
-            ></image>
-          </div>
-          <div class="img-box" show="{{news.img.length>0&&news.type==='video'}}">
-            <video
-              src="{{news.img[0]}}"
-              class="big-img"
-              poster="{{news.img[1]}}"
-            ></video>
-          </div>
-          <div class="content-foot">
-            <text class="tag {{news.tag?'':'no-border'}}">{{ news.tag }}</text>
-            <text>{{ news.author }}</text>
-            <text>{{ news.commentNum }}</text>
-            <text>{{ news.time }}</text>
-          </div>
+    <tabs onchange="changeTab">
+      <underline-tab-bar
+        tab-list="{{tabList}}"
+        selected-tab="{{selectedTab}}"
+        mode="scrollable"
+      ></underline-tab-bar>
+      <tab-content class="tab-content">
+        <div for="(index, item) in tabList">
+          <list
+            class="content-list"
+            scrollpage="{{scrollpage}}"
+            onscrollbottom="renderMoreListItem"
+            if="{{selectedTab === index}}"
+          >
+            <list-item type="news" class="content-list-item">
+              <div
+                class="itemBox"
+                for="news in contentList"
+                onclick="goDetail(news)"
+              >
+                <text class="title">{{ news.title }}</text>
+                <div class="img-box" show="{{news.img.length>0&&news.type==='img'}}">
+                  <image
+                    for="(imgIndex, img) in news.img"
+                    src="{{img}}"
+                    class="{{news.img.length===1?'big-img':'three-img'}}"
+                    show="{{imgIndex<3}}"
+                  ></image>
+                </div>
+                <div class="img-box" show="{{news.img.length>0&&news.type==='video'}}">
+                  <video
+                    src="{{news.img[0]}}"
+                    class="big-img"
+                    poster="{{news.img[1]}}"
+                  ></video>
+                </div>
+                <div class="content-foot">
+                  <text class="tag {{news.tag?'':'no-border'}}">{{ news.tag }}</text>
+                  <text>{{ news.author }}</text>
+                  <text>{{ news.commentNum }}</text>
+                  <text>{{ news.time }}</text>
+                </div>
+              </div>
+            </list-item>
+            <list-item type="loadMore" class="load-more">
+              <progress type="circular"></progress>
+              <text>加载更多</text>
+            </list-item>
+          </list>
         </div>
-      </list-item>
-      <list-item type="loadMore" class="load-more">
-        <progress type="circular"></progress>
-        <text>加载更多</text>
-      </list-item>
-    </list>
+      </tab-content>
+    </tabs>
     <div class="footer">
       <tabbar></tabbar>
     </div>
@@ -65,7 +78,9 @@ export default {
   private: {
     scrollpage: false,
     contentList: [],
-    news: []
+    news: [],
+    tabList: ['推荐', '娱乐', '体育', '军事', '干货', '科技', '时尚', '汽车', '股票', '数码', '家居', '美食', '收藏', '职场', '星座', '财经', '游戏', '互联网', '健康', '房产', '国际', '图片', '旅游', '电影', '科学探索', '美文', '好货'],
+    selectedTab: 0,
   },
   protected: {
   },
@@ -77,6 +92,10 @@ export default {
   onHide() {
   },
   onShow() {
+  },
+  changeTab(e) {
+    let index = e.index || 0
+    this.selectedTab = index
   },
   renderMoreListItem: function() {
     this.contentList = this.contentList.concat(this.news)
