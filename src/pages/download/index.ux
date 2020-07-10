@@ -1,5 +1,6 @@
 
 <import name="divHeader" src="../../components/header/index.ux"></import>
+<import name="my-icon" src="apex-ui/components/icon/index"></import>
 
 <template>
   <div class="page">
@@ -14,17 +15,22 @@
       <list-item type="download" class="content-list-item">
         <div
           class="itemBox"
-          for="download in contentList"
+          for="contentList"
+          @longpress="toggleDel(true, 'longpress')"
+          @click="toggleItem($idx)"
         >
+          <div show="{{showDel}}" class="mr20">
+            <my-icon type="{{delList.indexOf($idx) === -1 ? 'checkmark-circle-outline' : 'checkmark-circle' }}" size="48"></my-icon>
+          </div>
           <image
-            src="{{download.img}}"
+            src="{{ $item.img }}"
             class="img"
           ></image>
           <div class="content">
-            <text class="title">{{ download.name }}</text>
+            <text class="title">{{ $item.name }}</text>
             <div class="desc">
-              <text>{{ download.size }}</text>
-              <text>{{ download.time }}</text>
+              <text>{{ $item.size }}</text>
+              <text>{{ $item.time }}</text>
             </div>
           </div>
         </div>
@@ -34,6 +40,14 @@
         <text>加载更多</text>
       </list-item>
     </list>
+    <div class="footer-wrap" show="{{showDel}}">
+      <div @click="selectAll">
+        <my-icon type="{{contentList.length !== delList.length ? 'checkmark-circle-outline' : 'checkmark-circle' }}" size="48"></my-icon>
+        <text class="ml10">全选</text>
+      </div>
+      <text @click="del">删除</text>
+      <text @click="toggleDel(false)">取消</text>
+    </div>
   </div>
 </template>
 
@@ -48,7 +62,9 @@ export default {
   private: {
     scrollpage: false,
     contentList: [],
-    download: []
+    download: [],
+    showDel: false,
+    delList: []
   },
   protected: {
   },
@@ -63,6 +79,33 @@ export default {
   },
   renderMoreListItem: function() {
     this.contentList = this.contentList.concat(this.download)
+  },
+  del() {
+    console.log('删除')
+    console.log(this.delList)
+    this.toggleDel(false)
+  },
+  toggleDel(o, longpress) {
+    this.showDel = o
+    if (longpress !== 'longpress') this.delList = []
+  },
+  selectAll() {
+    if (this.delList.length === this.contentList.length) {
+      this.delList = []
+    } else {
+      const arry = this.contentList.map((item, index) => index)
+      this.delList = arry
+    }
+  },
+  toggleItem(idx) {
+    if (this.showDel) {
+      if (this.delList.indexOf(idx) === -1) {
+        this.delList.push(idx)
+      } else {
+        this.delList.splice(this.delList.indexOf(idx), 1)
+      }
+      console.log(this.delList)
+    }
   }
 }
 </script>
