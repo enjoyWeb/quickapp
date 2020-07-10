@@ -30,7 +30,7 @@
           <my-icon type="options" size="48"></my-icon>
         </div>
         <text show="{{showDel}}" @click="del">删除</text>
-        <text show="{{showDel}}" @click="toggleDel(false)">完成</text>
+        <text show="{{showDel}}" @click="toggleDel(false)">取消</text>
       </div>
     </div>
   </div>
