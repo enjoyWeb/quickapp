@@ -41,12 +41,12 @@
       </list-item>
     </list>
     <div class="footer-wrap" show="{{showDel}}">
-      <div @click="selectAll">
+      <div class="btn" @click="selectAll">
         <my-icon type="{{contentList.length !== delList.length ? 'checkmark-circle-outline' : 'checkmark-circle' }}" size="48"></my-icon>
         <text class="ml10">全选</text>
       </div>
-      <text @click="del">删除</text>
-      <text @click="toggleDel(false)">取消</text>
+      <text class="btn" @click="del">删除</text>
+      <text class="btn" @click="toggleDel(false)">取消</text>
     </div>
   </div>
 </template>

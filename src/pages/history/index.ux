@@ -1,5 +1,6 @@
 <import name="divHeader" src="../../components/header/index.ux"></import>
 <import name="my-icon" src="apex-ui/components/icon/index"></import>
+<import name="my-dialog" src="apex-ui/components/dialog/index"></import>
 
 <template>
   <div class="page">
@@ -9,7 +10,7 @@
       <my-icon type="trash" size="52"></my-icon>
     </div>
 
-    <text class="empty" show="{{!contentList.length}}">暂无下载数据</text>
+    <text class="empty" show="{{!contentList.length}}">暂无历史记录</text>
     <!-- 消息列表 -->
     <list
       show="{{contentList.length}}"
@@ -52,6 +53,7 @@
         <text>加载更多</text>
       </list-item>
     </list>
+    <my-dialog visible="{{open}}" title="删除" content="确定要清空历史记录？" onaffirm="confirm" oncancel="close"></my-dialog>
   </div>
 </template>
 
@@ -60,6 +62,7 @@
 </style>
 
 <script>
+import prompt from '@system.prompt'
 import router from '@system.router'
 import data from '../../data.js'
 
@@ -67,7 +70,8 @@ export default {
   private: {
     scrollpage: false,
     contentList: [],
-    news: []
+    news: [],
+    open: false
   },
   protected: {
   },
@@ -95,7 +99,19 @@ export default {
     }
   },
   delAll() {
-    console.log('是否确定要清空历史记录')
+    if (!this.contentList.length) {
+      prompt.showToast({ message: '暂无历史记录可清空' })
+    } else {
+      this.toggleDialog(true)
+    }
+  },
+  confirm() {
+    console.log('确定清空历史记录')
+    this.toggleDialog(false)
+    this.contentList = []
+  },
+  toggleDialog(o) {
+    this.open = o
   }
 }
 </script>

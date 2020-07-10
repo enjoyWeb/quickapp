@@ -26,11 +26,11 @@
       </tabs>
   
       <div class="footer-wrap">
-        <div show="{{!showDel}}" @click="toggleDel(true)">
+        <div class="btn" show="{{!showDel}}" @click="toggleDel(true)">
           <my-icon type="options" size="48"></my-icon>
         </div>
-        <text show="{{showDel}}" @click="del">删除</text>
-        <text show="{{showDel}}" @click="toggleDel(false)">取消</text>
+        <text class="btn" show="{{showDel}}" @click="del">删除</text>
+        <text class="btn" show="{{showDel}}" @click="toggleDel(false)">取消</text>
       </div>
     </div>
   </div>
