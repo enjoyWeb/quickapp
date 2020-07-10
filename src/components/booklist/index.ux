@@ -14,18 +14,22 @@
       <list-item type="list" class="content-list-item">
         <div
           class="itemBox"
-          for="list in contentList"
+          for="contentList"
+          @click="clickDel($item, $idx)"
         >
-          <image class="img" src="{{list.img}}"></image>
+          <div show="{{delMode}}" class="mr20">
+            <my-icon type="{{checkedList.indexOf($idx) === -1 ? 'checkmark-circle-outline' : 'checkmark-circle' }}" size="48"></my-icon>
+          </div>
+          <image class="img" src="{{$item.img}}"></image>
           <div class="content">
             <div class="title">
-              <text>{{ list.title }}</text>
+              <text>{{ $item.title }}</text>
             </div>
             <div class="desc">
               <text>最新章节：</text>
-              <text>{{ list.desc }}</text>
+              <text>{{ $item.desc }}</text>
             </div>
-            <text class="update">{{ list.update }}</text>
+            <text class="update">{{ $item.update }}</text>
           </div>
         </div>
       </list-item>
@@ -49,12 +53,15 @@ export default {
   data: {
     scrollpage: false,
     contentList: [],
-    list: []
+    list: [],
+    delMode: false,
+    checkedList: []
   },
   onInit() {
     let that = this
     that.contentList = data.books
     that.list = data.books
+    this.$on('broadevt',this.broadevt)
   },
   onHide() {
   },
@@ -62,6 +69,24 @@ export default {
   },
   renderMoreListItem: function() {
     this.contentList = this.contentList.concat(this.list)
+  },
+  broadevt(evt){
+    this.delMode = evt.detail.del
+    this.checkedList = []
+  },
+  clickDel: function(news, idx) {
+    console.log('idx->', idx)
+    if (this.delMode) {
+      if (this.checkedList.indexOf(idx) === -1) {
+        this.checkedList.push(idx)
+      } else {
+        this.checkedList.splice(this.checkedList.indexOf(idx), 1)
+      }
+      this.$emit('emitEvt',{
+        delList: this.checkedList
+      })
+      console.log(this.checkedList)
+    }
   }
 }
 </script>

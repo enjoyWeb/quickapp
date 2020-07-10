@@ -1,4 +1,5 @@
 <import name="divHeader" src="../../components/header/index.ux"></import>
+<import name="my-icon" src="apex-ui/components/icon/index"></import>
 
 <template>
   <div class="page">
@@ -16,11 +17,14 @@
       <list-item type="news" class="content-list-item">
         <div
           class="itemBox"
-          for="news in contentList"
-          onclick="goDetail(news)"
+          for="contentList"
+          onclick="goDetail($item, $idx)"
         >
-          <image src="{{news.profile}}" class="img"></image>
-          <text>{{ news.title }}</text>
+          <div show="{{delMode}}" class="mr20">
+            <my-icon type="{{checkedList.indexOf($idx) === -1 ? 'checkmark-circle-outline' : 'checkmark-circle' }}" size="48"></my-icon>
+          </div>
+          <image src="{{$item.profile}}" class="img"></image>
+          <text>{{ $item.title }}</text>
         </div>
       </list-item>
       <list-item type="loadMore" class="load-more">
@@ -40,34 +44,51 @@ import router from '@system.router'
 import data from '../../data.js'
 
 export default {
-  private: {
+  data: {
     scrollpage: false,
     contentList: [],
-    news: []
-  },
-  protected: {
+    news: [],
+    delMode: false,
+    checkedList: []
   },
   onInit() {
     let that = this
     that.contentList = data.news
     that.news = data.news
+    this.$on('broadevt',this.broadevt)
   },
   onHide() {
   },
   onShow() {
   },
+  broadevt(evt){
+    this.delMode = evt.detail.del
+    this.checkedList = []
+  },
   renderMoreListItem: function() {
     this.contentList = this.contentList.concat(this.news)
   },
-  goDetail: function(news) {
+  goDetail: function(news, idx) {
+    console.log('idx->', idx)
     let that = this
-    if (news.type === 'img') {
+    if (news.type === 'img' && !this.delMode) {
       router.push({
         uri: '/pages/detail',
         params: {
           info: news
         }
       })
+    }
+    if (this.delMode) {
+      if (this.checkedList.indexOf(idx) === -1) {
+        this.checkedList.push(idx)
+      } else {
+        this.checkedList.splice(this.checkedList.indexOf(idx), 1)
+      }
+      this.$emit('emitEvt',{
+        delList: this.checkedList
+      })
+      console.log(this.checkedList)
     }
   }
 }

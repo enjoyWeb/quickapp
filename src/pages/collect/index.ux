@@ -1,27 +1,38 @@
 <import name="bookList" src="../../components/booklist/index.ux"></import>
 <import name="website" src="../../components/website/index.ux"></import>
+<import name="my-icon" src="apex-ui/components/icon/index"></import>
 
 <template>
   <div>
     <image class="back" src="/common/images/b2h.png" onclick="back"></image>
 
-    <tabs class="tabs" onchange="changeTabactive" index="{{activeIndex}}">
-      <tab-bar class="tab-bar">
-        <text class="{{activeIndex === 0 ? 'tab-text active-tab' : 'tab-text'}}">书架</text>
-        <text class="{{activeIndex === 1 ? 'tab-text active-tab' : 'tab-text'}}">网址</text>
-      </tab-bar>
+    <div class="page">
+      <tabs class="tabs" onchange="changeTabactive" index="{{activeIndex}}">
+        <tab-bar class="tab-bar">
+          <text class="{{activeIndex === 0 ? 'tab-text active-tab' : 'tab-text'}}">书架</text>
+          <text class="{{activeIndex === 1 ? 'tab-text active-tab' : 'tab-text'}}">网址</text>
+        </tab-bar>
+    
+        <tab-content class="tab-content" scrollable="{{scrollable}}">
+          <div class="item-container">
+            <div class="item-content" show="{{activeIndex === 0}}">
+              <bookList onemit-evt="emitEvt"></bookList>
+            </div>
+            <div class="item-content" show="{{activeIndex === 1}}">
+              <website onemit-evt="emitEvt"></website>
+            </div>
+          </div>
+        </tab-content>
+      </tabs>
   
-      <tab-content class="tab-content" scrollable="{{scrollable}}">
-        <div class="item-container">
-          <div class="item-content" show="{{activeIndex === 0}}">
-            <bookList></bookList>
-          </div>
-          <div class="item-content" show="{{activeIndex === 1}}">
-            <website></website>
-          </div>
+      <div class="footer-wrap">
+        <div show="{{!showDel}}" @click="toggleDel(true)">
+          <my-icon type="options" size="48"></my-icon>
         </div>
-      </tab-content>
-    </tabs>
+        <text show="{{showDel}}" @click="del">删除</text>
+        <text show="{{showDel}}" @click="toggleDel(false)">完成</text>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -37,7 +48,9 @@ export default {
   private: {
     componentName: 'tabs',
     scrollable: true,
-    activeIndex: 1
+    activeIndex: 1,
+    showDel: false,
+    delList: []
   },
   onInit(query) {
     const { book = false } = query
@@ -45,11 +58,26 @@ export default {
   },
   changeTabactive (e) {
     this.activeIndex = e.index
+    this.toggleDel(false)
   },
   back () {
     router.replace({
       uri: '/pages/home'
     })
+  },
+  toggleDel (o) {
+    this.showDel = o
+    this.$broadcast('broadevt', {
+      del: o
+    })
+  },
+  emitEvt(evt){
+    this.delList = evt.detail.delList
+  },
+  del () {
+    console.log('删除')
+    console.log(this.delList)
+    this.toggleDel(false)
   }
 }
 </script>
